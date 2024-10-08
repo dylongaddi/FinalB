@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://d11ybisurij87"]
+
+[ext_resource type="Texture2D" uid="uid://cvvavysai2dnj" path="res://Assets/Undead executioner/Undead executioner puppet/png/idle.png" id="1_73pjq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_khsgh"]
+atlas = ExtResource("1_73pjq")
+region = Rect2(0, 0, 101, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dytg8"]
+atlas = ExtResource("1_73pjq")
+region = Rect2(101, 0, 101, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dawuc"]
+atlas = ExtResource("1_73pjq")
+region = Rect2(202, 0, 101, 100)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oi8yk"]
+atlas = ExtResource("1_73pjq")
+region = Rect2(303, 0, 101, 100)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cxciw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_khsgh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dytg8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dawuc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oi8yk")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[node name="Battle" type="Node2D"]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(533, 300)
+scale = Vector2(3.22, 3.22)
+sprite_frames = SubResource("SpriteFrames_cxciw")
+animation = &"new_animation"
+frame = 1
+frame_progress = 0.665696

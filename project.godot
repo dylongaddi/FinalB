@@ -11,5 +11,10 @@ config_version=5
 [application]
 
 config/name="FinalBoss"
+run/main_scene="res://battle.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/aseprite_importer/plugin.cfg")

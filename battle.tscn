@@ -1,6 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://d11ybisurij87"]
+[gd_scene load_steps=14 format=3 uid="uid://d11ybisurij87"]
 
+[ext_resource type="Script" path="res://Boss.gd" id="1_5ougy"]
 [ext_resource type="Texture2D" uid="uid://cvvavysai2dnj" path="res://Assets/Undead executioner/Undead executioner puppet/png/idle.png" id="1_73pjq"]
+[ext_resource type="Texture2D" uid="uid://b0daqqiev3775" path="res://Assets/Enjl-Dark Halls Tileset/background_1.png" id="3_dknna"]
+[ext_resource type="Texture2D" uid="uid://dmctdlecaotbl" path="res://Assets/Enjl-Dark Halls Tileset/background_4.png" id="4_jjkoy"]
+[ext_resource type="Texture2D" uid="uid://41ekdxf5nfbt" path="res://Assets/Enjl-Dark Halls Tileset/background_2.png" id="4_wdutx"]
+[ext_resource type="Texture2D" uid="uid://vw7k4onh8tp7" path="res://Assets/Enjl-Dark Halls Tileset/background_3.png" id="5_d0nrm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_khsgh"]
 atlas = ExtResource("1_73pjq")
@@ -38,12 +43,86 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uosvr"]
+size = Vector2(31.3665, 57.764)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_8mvrl"]
+
 [node name="Battle" type="Node2D"]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(533, 300)
+[node name="Boss" type="CharacterBody2D" parent="."]
+position = Vector2(585, 297)
 scale = Vector2(3.22, 3.22)
+script = ExtResource("1_5ougy")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Boss"]
 sprite_frames = SubResource("SpriteFrames_cxciw")
 animation = &"new_animation"
-frame = 1
-frame_progress = 0.665696
+frame = 3
+frame_progress = 0.326197
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boss"]
+position = Vector2(-4.81369, 0)
+shape = SubResource("RectangleShape2D_uosvr")
+
+[node name="Camera2D" type="Camera2D" parent="Boss"]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(-28, -204)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(493, 637)
+scale = Vector2(12.035, 6.77)
+shape = SubResource("WorldBoundaryShape2D_8mvrl")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+scale = Vector2(1.1, 1.1)
+transform = Transform2D(1.1, 0, 0, 1.1, 0, 0)
+
+[node name="Background" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(-99.6364, -148)
+scale = Vector2(1.26, 1.26)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Background"]
+position = Vector2(612.614, 303.866)
+scale = Vector2(6.88321, 2.49174)
+texture = ExtResource("3_dknna")
+
+[node name="Layer 2" type="ParallaxLayer" parent="ParallaxBackground"]
+scale = Vector2(1.26, 1.26)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Layer 2"]
+position = Vector2(235.209, 215.729)
+texture = ExtResource("4_wdutx")
+
+[node name="Layer 3" type="ParallaxLayer" parent="ParallaxBackground"]
+scale = Vector2(1.26, 1.26)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/Layer 3"]
+position = Vector2(717.172, 181.457)
+scale = Vector2(1.11828, 1.48196)
+texture = ExtResource("5_d0nrm")
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/Layer 3"]
+position = Vector2(302.242, 188.312)
+scale = Vector2(1.18901, 1.42945)
+texture = ExtResource("5_d0nrm")
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(-153.636, -170)
+scale = Vector2(1.26, 1.26)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+position = Vector2(1059, 316.099)
+scale = Vector2(1.26, 1.26)
+texture = ExtResource("4_jjkoy")
+
+[node name="Sprite2D3" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+position = Vector2(658, 316.099)
+scale = Vector2(1.26, 1.26)
+texture = ExtResource("4_jjkoy")
+
+[node name="Sprite2D5" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+position = Vector2(252, 316.099)
+scale = Vector2(1.26, 1.26)
+texture = ExtResource("4_jjkoy")

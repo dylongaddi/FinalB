@@ -156,5 +156,5 @@ shape = SubResource("RectangleShape2D_y43ug")
 limit_left = 0
 limit_top = 0
 limit_right = 2400
-limit_bottom = 820
+limit_bottom = 900
 script = ExtResource("3_k70xu")

@@ -13,11 +13,11 @@
 [node name="Battle" type="Node2D"]
 
 [node name="Boss" parent="." instance=ExtResource("1_gyhmg")]
-position = Vector2(1195, 425)
+position = Vector2(1191, 494)
 scale = Vector2(7, 7)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(1234, 515)
+position = Vector2(1234, 562)
 scale = Vector2(1.16, 1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]

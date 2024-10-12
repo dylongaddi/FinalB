@@ -24,10 +24,6 @@ window/stretch/aspect="keep_height"
 
 project/assembly_name="FinalBoss"
 
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/aseprite_importer/plugin.cfg")
-
 [input]
 
 left={

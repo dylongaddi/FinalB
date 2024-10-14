@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://t64kfv1h7p7k"]
+[gd_scene load_steps=29 format=3 uid="uid://t64kfv1h7p7k"]
 
 [ext_resource type="Script" path="res://Scripts/Boss.gd" id="1_2ltfe"]
 [ext_resource type="Texture2D" uid="uid://cvvavysai2dnj" path="res://Assets/Undead executioner/Undead executioner puppet/png/idle.png" id="2_6fiwd"]
@@ -136,13 +136,33 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_uosvr"]
-size = Vector2(36, 58.882)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bu3r8"]
+size = Vector2(5.50122, 18)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hsijn"]
+size = Vector2(3, 12.0012)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_u78jr"]
+radius = 2.0
+height = 14.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dnq6r"]
+size = Vector2(10.4985, 0.999999)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bgbtf"]
+size = Vector2(1.99859, 1.99522)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_078hr"]
+size = Vector2(0.998682, 2.99815)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ngbfu"]
+size = Vector2(5.0011, 6.00487)
 
 [node name="Boss" type="CharacterBody2D" groups=["boss"]]
-light_mask = 2
-visibility_layer = 2
 position = Vector2(597, 489)
+rotation = 0.0011979
+collision_layer = 2
+collision_mask = 2
 motion_mode = 1
 script = ExtResource("1_2ltfe")
 
@@ -150,10 +170,31 @@ script = ExtResource("1_2ltfe")
 sprite_frames = SubResource("SpriteFrames_cxciw")
 animation = &"attack"
 autoplay = "idle"
-frame_progress = 0.542768
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-light_mask = 2
-visibility_layer = 2
-position = Vector2(-1, 3.55899)
-shape = SubResource("RectangleShape2D_uosvr")
+position = Vector2(-10.2482, 1.01315)
+shape = SubResource("RectangleShape2D_bu3r8")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2(-9.48083, 16.0118)
+shape = SubResource("RectangleShape2D_hsijn")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="."]
+position = Vector2(-1.01076, -8.99879)
+shape = SubResource("CapsuleShape2D_u78jr")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="."]
+position = Vector2(5.74359, -5.50842)
+shape = SubResource("RectangleShape2D_dnq6r")
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="."]
+position = Vector2(6.99713, -4.0072)
+shape = SubResource("RectangleShape2D_bgbtf")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="."]
+position = Vector2(-9.47052, 23.5129)
+shape = SubResource("RectangleShape2D_078hr")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="."]
+position = Vector2(-4.49689, -4.99765)
+shape = SubResource("RectangleShape2D_ngbfu")

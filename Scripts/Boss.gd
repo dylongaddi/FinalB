@@ -7,15 +7,14 @@ const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
 @onready var sprite = $AnimatedSprite2D
 
-@export var maxHealth = 1000
+@export var maxHealth = 100
 @onready var currentHealth: int = maxHealth
 const _bullet = preload("res://Scenes/bullet.tscn")
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-
-
-
+	
+	
 func _physics_process(_delta):
 	# Add the gravity.
 	# Get the input direction and handle the movement/deceleration.
@@ -32,8 +31,11 @@ func _physics_process(_delta):
 
 
 func take_damage(amount: int):
-	currentHealth = max(currentHealth - amount, 0)
+	currentHealth -= amount
 	healthChanged.emit()  # Emit signal when health changes
+	
+	
+
 
 
 	

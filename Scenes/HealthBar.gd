@@ -14,4 +14,6 @@ func _process(delta):
 	pass
 	
 func _on_health_changed():
-	value = object.currentHealth * 100 / object.maxHealth
+	if object.currentHealth < 0:
+		return
+	value = object.currentHealth

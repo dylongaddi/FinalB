@@ -9,10 +9,12 @@ const JUMP_VELOCITY = -500.0
 @onready var sprite = $AnimatedSprite2D
 @onready var gun = $AnimatedSprite2D/Anchor/Gun
 @onready var gunAnchor = $AnimatedSprite2D/Anchor
-
+@export var friction = 3.0 
 
 @export var maxHealth = 5
+@export var ammoCount = 30
 @onready var currentHealth: int = maxHealth
+
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -40,7 +42,7 @@ func _physics_process(delta):
 			sprite.scale.x = -1
 		velocity.x = direction * SPEED
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, SPEED * delta * friction)
 		sprite.play("idle")
 		
 		
@@ -58,6 +60,7 @@ func _physics_process(delta):
 				gunAnchor.scale = Vector2(-1, -1)
 				gunAnchor.rotation = -gun.gun_direction
 				pass
+			ammoCount -= 1
 
 func take_damage(amount: int):
 	currentHealth = max(currentHealth - amount, 0)

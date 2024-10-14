@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bq52kqsyj3p7b"]
+[gd_scene load_steps=14 format=3 uid="uid://bq52kqsyj3p7b"]
 
 [ext_resource type="PackedScene" uid="uid://t64kfv1h7p7k" path="res://Scenes/boss.tscn" id="1_gyhmg"]
 [ext_resource type="Texture2D" uid="uid://vaanx3x672ai" path="res://Assets/Background/1.png" id="2_kira0"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bkoxh8ua1i7x0" path="res://Assets/Background/5.png" id="6_ovqqe"]
 [ext_resource type="Script" path="res://Scenes/HealthBar.gd" id="7_8f8sn"]
 [ext_resource type="PackedScene" uid="uid://b3ed36e8ufrqc" path="res://Scenes/player.tscn" id="7_nvbp2"]
+[ext_resource type="Script" path="res://Scenes/SignalBus.gd" id="9_ttduj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wfa3c"]
 size = Vector2(0.618949, 122.157)
@@ -105,10 +106,10 @@ z_index = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -320.0
-offset_top = 21.0
-offset_right = 320.0
-offset_bottom = 44.0
+offset_left = -120.0
+offset_top = 15.0
+offset_right = 120.0
+offset_bottom = 42.0
 grow_horizontal = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_jehcj")
 theme_override_styles/fill = SubResource("StyleBoxFlat_k004x")
@@ -120,8 +121,9 @@ object = NodePath("../../Boss")
 position = Vector2(671, 625)
 scale = Vector2(1.8, 1.8)
 
-[node name="Gun" parent="Player/AnimatedSprite2D/Anchor" index="0" node_paths=PackedStringArray("player")]
-player = NodePath("../../..")
+[node name="SignalBus" type="Node2D" parent="."]
+visible = false
+script = ExtResource("9_ttduj")
 
 [connection signal="healthChanged" from="Boss" to="CanvasLayer/BossHealthBar" method="_on_boss_health_changed"]
 

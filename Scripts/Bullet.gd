@@ -1,25 +1,25 @@
+@tool
 extends RigidBody2D
 class_name Bullet
 
-
 # Called when the node enters the scene tree for the first time.
-var speed = 750
 signal hit
-var velocity:Vector2
+@export var velocity:Vector2
+@export var duration = 2
+@onready var sprite = $Sprite2D
 
-func start(_position, _direction):
-	rotation = _direction
-	position = _position
-	velocity = Vector2(speed, 0).rotated(rotation)
+var direction = Vector2.RIGHT
+var speed = 0.0
 	
 
-func project(direction:Vector2, speed:float):
-	velocity = direction * speed
-
 func _physics_process(delta):
-	var collision = move_and_collide(velocity * delta)
+	velocity = direction * speed * delta
+	rotation = velocity.angle()
+	var collision = move_and_collide(velocity)
+	
 	if collision:
-		hit.emit()
 		queue_free()
+	
+		
 	
 	

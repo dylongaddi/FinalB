@@ -1,15 +1,23 @@
 extends CharacterBody2D
+class_name Player
 
+signal running(value)
+signal healthChanged
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -500.0
 @onready var sprite = $AnimatedSprite2D
 @onready var gun = $AnimatedSprite2D/Anchor/Gun
+@onready var gunAnchor = $AnimatedSprite2D/Anchor
 
-signal running(value)
+
+@export var maxHealth = 5
+@onready var currentHealth: int = maxHealth
+
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+
 
 
 func _physics_process(delta):
@@ -20,21 +28,37 @@ func _physics_process(delta):
 	# Handle jump.
 	if Input.is_action_just_pressed("jump") and is_on_floor() or Input.is_action_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-
+			
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var direction = Input.get_axis("left", "right")
 	if direction:
 		sprite.play("run")
-		gun.set_bobble(true)
 		if direction > 0:
 			sprite.scale.x = 1
 		elif direction < 0:
 			sprite.scale.x = -1
 		velocity.x = direction * SPEED
 	else:
-		gun.set_bobble(false)
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		sprite.play("idle")
+		
+		
 
 	move_and_slide()
+	
+	if Input.is_action_pressed("shoot"):
+		if gun.firerateTimer.is_stopped():
+			gun.shoot()
+			gunAnchor.rotation = gun.gun_direction
+			if sprite.scale.x == 1:
+				gunAnchor.scale = Vector2(1, 1)
+				gunAnchor.rotation = gun.gun_direction
+			elif sprite.scale.x == -1:
+				gunAnchor.scale = Vector2(-1, -1)
+				gunAnchor.rotation = -gun.gun_direction
+				pass
+
+func take_damage(amount: int):
+	currentHealth = max(currentHealth - amount, 0)
+	healthChanged.emit()  # Emit signal when health changes

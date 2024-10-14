@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bq52kqsyj3p7b"]
+[gd_scene load_steps=13 format=3 uid="uid://bq52kqsyj3p7b"]
 
 [ext_resource type="PackedScene" uid="uid://t64kfv1h7p7k" path="res://Scenes/boss.tscn" id="1_gyhmg"]
 [ext_resource type="Texture2D" uid="uid://vaanx3x672ai" path="res://Assets/Background/1.png" id="2_kira0"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://ckqsu7uuktbm7" path="res://Assets/Background/3.png" id="4_r4h31"]
 [ext_resource type="Texture2D" uid="uid://bi0767vs7h137" path="res://Assets/Background/4.png" id="5_p10xh"]
 [ext_resource type="Texture2D" uid="uid://bkoxh8ua1i7x0" path="res://Assets/Background/5.png" id="6_ovqqe"]
+[ext_resource type="Script" path="res://Scenes/HealthBar.gd" id="7_8f8sn"]
 [ext_resource type="PackedScene" uid="uid://b3ed36e8ufrqc" path="res://Scenes/player.tscn" id="7_nvbp2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wfa3c"]
@@ -13,38 +14,46 @@ size = Vector2(0.618949, 122.157)
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_8mvrl"]
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_g3uqg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k004x"]
+bg_color = Color(0.356863, 0.662745, 0.647059, 1)
+
 [node name="Battle" type="Node2D"]
 
 [node name="Boss" parent="." instance=ExtResource("1_gyhmg")]
-position = Vector2(1195, 425)
-scale = Vector2(7, 7)
+position = Vector2(1209, 350)
+scale = Vector2(5.2, 5.2)
 
-[node name="StaticBody2D3" type="StaticBody2D" parent="."]
+[node name="RightBoundary" type="StaticBody2D" parent="."]
 position = Vector2(2280, 976)
 scale = Vector2(4.1616, 1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightBoundary"]
 position = Vector2(31.3293, -577.5)
 scale = Vector2(12.035, 6.77)
 shape = SubResource("RectangleShape2D_wfa3c")
 
-[node name="StaticBody2D2" type="StaticBody2D" parent="."]
+[node name="LeftBoundary" type="StaticBody2D" parent="."]
 position = Vector2(-142.88, 992)
 scale = Vector2(4.1616, 1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftBoundary"]
 position = Vector2(31.3293, -577.5)
 scale = Vector2(12.035, 6.77)
 shape = SubResource("RectangleShape2D_wfa3c")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(-47, 496)
+[node name="FloorBoundary" type="StaticBody2D" parent="."]
+position = Vector2(-29, 485)
 scale = Vector2(2.04, 1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FloorBoundary"]
 position = Vector2(1, 307)
 scale = Vector2(12.035, 6.77)
 shape = SubResource("WorldBoundaryShape2D_8mvrl")
+
+[node name="TileMap" type="TileMap" parent="."]
+format = 2
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -87,18 +96,31 @@ scale = Vector2(5, 5)
 texture = ExtResource("6_ovqqe")
 centered = false
 
-[node name="TileMap" type="TileMap" parent="."]
-format = 2
-
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
 offset_right = 40.0
 offset_bottom = 40.0
 
+[node name="BossHealthBar" type="ProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("object")]
+z_index = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -120.0
+offset_top = 15.0
+offset_right = 120.0
+offset_bottom = 42.0
+grow_horizontal = 2
+theme_override_styles/background = SubResource("StyleBoxEmpty_g3uqg")
+theme_override_styles/fill = SubResource("StyleBoxFlat_k004x")
+max_value = 1000.0
+script = ExtResource("7_8f8sn")
+object = NodePath("../../Boss")
+
 [node name="Player" parent="." instance=ExtResource("7_nvbp2")]
-position = Vector2(671, 661)
-scale = Vector2(2, 2)
+position = Vector2(671, 625)
+scale = Vector2(1.8, 1.8)
 
 [editable path="Boss"]
 [editable path="Player"]

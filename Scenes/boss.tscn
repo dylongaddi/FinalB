@@ -139,7 +139,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_uosvr"]
 size = Vector2(36, 58.882)
 
-[node name="Boss" type="CharacterBody2D"]
+[node name="Boss" type="CharacterBody2D" groups=["boss"]]
+light_mask = 2
+visibility_layer = 2
 position = Vector2(597, 489)
 motion_mode = 1
 script = ExtResource("1_2ltfe")
@@ -151,5 +153,7 @@ autoplay = "idle"
 frame_progress = 0.542768
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 2
+visibility_layer = 2
 position = Vector2(-1, 3.55899)
 shape = SubResource("RectangleShape2D_uosvr")

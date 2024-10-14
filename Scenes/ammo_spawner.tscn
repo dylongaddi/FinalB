@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://bso5l8yqrvi7l"]
+
+[ext_resource type="Script" path="res://Scenes/ammo_spawner.gd" id="1_34lhv"]
+[ext_resource type="Texture2D" uid="uid://br4jrghle01oh" path="res://Assets/2D Health & Ammo Pickups v6.2/32px/ammo-pistol 32px.png" id="1_vllh2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fo1yi"]
+
+[node name="AmmoSpawner" type="StaticBody2D"]
+script = ExtResource("1_34lhv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_vllh2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_fo1yi")

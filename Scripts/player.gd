@@ -16,7 +16,6 @@ const JUMP_VELOCITY = -500.0
 @onready var currentHealth: int = maxHealth
 
 
-
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 

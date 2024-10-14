@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://b2alruayonah6"]
+
+[ext_resource type="Script" path="res://Scripts/Bullet.gd" id="1_yknwm"]
+[ext_resource type="Texture2D" uid="uid://cn78roupqup0v" path="res://Assets/FXpack13/FXpack13/Effect2/38.png" id="2_l8yv7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q248r"]
+size = Vector2(22.9999, 17.9999)
+
+[node name="Bullet" type="RigidBody2D"]
+collision_layer = 2
+collision_mask = 2
+gravity_scale = 0.0
+script = ExtResource("1_yknwm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.52357, -0.00124711)
+rotation = 0.00261856
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_q248r")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(2.98023e-08, 2.98023e-08)
+scale = Vector2(0.7, 0.7)
+texture = ExtResource("2_l8yv7")

@@ -1,7 +1,6 @@
 extends CharacterBody2D
 class_name Player
 
-signal running(value)
 signal healthChanged
 
 const SPEED = 300.0

@@ -12,6 +12,7 @@ const JUMP_VELOCITY = -500.0
 
 @export var maxHealth = 5
 @export var ammoCount = 30
+@export var ammoLabel: RichTextLabel
 @onready var currentHealth: int = maxHealth
 
 
@@ -59,7 +60,12 @@ func _physics_process(delta):
 				gunAnchor.scale = Vector2(-1, -1)
 				gunAnchor.rotation = -gun.gun_direction
 				pass
-			ammoCount -= 1
+			if ammoCount > 0:
+				ammoCount -= 1
+				if ammoLabel:
+					ammoLabel.text = str(ammoCount)
+				else:
+					return
 
 func take_damage(amount: int):
 	currentHealth = max(currentHealth - amount, 0)

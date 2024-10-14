@@ -132,10 +132,18 @@ value = 5.0
 script = ExtResource("7_8f8sn")
 object = NodePath("../../Player")
 
-[node name="Player" parent="." instance=ExtResource("7_nvbp2")]
+[node name="AmmoCount" type="RichTextLabel" parent="CanvasLayer"]
+offset_left = 170.0
+offset_right = 210.0
+offset_bottom = 40.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+text = "30"
+
+[node name="Player" parent="." node_paths=PackedStringArray("ammoLabel") instance=ExtResource("7_nvbp2")]
 position = Vector2(671, 625)
 scale = Vector2(1.8, 1.8)
 friction = 3.5
+ammoLabel = NodePath("../CanvasLayer/AmmoCount")
 
 [node name="Gun" parent="Player/AnimatedSprite2D/Anchor" index="0" node_paths=PackedStringArray("player")]
 player = NodePath("../../..")

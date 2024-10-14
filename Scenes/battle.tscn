@@ -120,6 +120,7 @@ theme_override_styles/background = SubResource("StyleBoxFlat_jehcj")
 theme_override_styles/fill = SubResource("StyleBoxFlat_k004x")
 max_value = 1000.0
 value = 1000.0
+show_percentage = false
 script = ExtResource("7_8f8sn")
 object = NodePath("../../Boss")
 
@@ -142,6 +143,7 @@ theme_override_styles/background = SubResource("StyleBoxFlat_jehcj")
 theme_override_styles/fill = SubResource("StyleBoxFlat_k004x")
 max_value = 5.0
 value = 5.0
+show_percentage = false
 script = ExtResource("7_8f8sn")
 object = NodePath("../../Player")
 
@@ -155,7 +157,7 @@ offset_top = 21.0
 offset_right = 240.0
 offset_bottom = 66.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
-text = "30"
+text = "30/30"
 
 [node name="Player" parent="." node_paths=PackedStringArray("ammoLabel") instance=ExtResource("7_nvbp2")]
 position = Vector2(671, 625)

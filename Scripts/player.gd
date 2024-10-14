@@ -62,7 +62,10 @@ func _physics_process(delta):
 			if ammoCount > 0:
 				ammoCount -= 1
 				if ammoLabel:
-					ammoLabel.text = str(ammoCount)
+					if ammoCount < 10:
+						ammoLabel.text = "0%d/30" % [ammoCount]
+					else:
+						ammoLabel.text = "%d/30" % [ammoCount]
 				else:
 					return
 

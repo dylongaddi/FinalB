@@ -3,7 +3,7 @@ class_name Bullet
 
 # Called when the node enters the scene tree for the first time.
 @export var velocity:Vector2
-@export var duration = 2
+@export var duration = 100
 @onready var sprite = $Sprite2D
 
 var damage = 1
@@ -24,6 +24,10 @@ func _physics_process(delta):
 			pass
 		if entity.is_in_group("players"):
 			pass
+		queue_free()
+		
+	duration -= 1
+	if duration < 0:
 		queue_free()
 	
 		

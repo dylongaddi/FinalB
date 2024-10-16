@@ -1,7 +1,7 @@
 extends Control
 
-@onready var main = $Main
-@onready var settings = $Settings
+@onready var main = $CanvasLayer/Main
+@onready var settings = $CanvasLayer/MainMenuSettings
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -18,7 +18,8 @@ func _on_play_pressed():
 
 
 func _on_settings_pressed():
-	main.hide()
+	if main and main.visible:
+		main.hide()
 	settings.show()
 	pass # Replace with function body.
 
@@ -26,3 +27,10 @@ func _on_settings_pressed():
 func _on_quit_pressed():
 	get_tree().quit()
 	pass # Replace with function body.
+
+
+func _on_main_menu_pressed():
+	if settings.visible == true and settings:
+		settings.hide()
+	main.show()
+

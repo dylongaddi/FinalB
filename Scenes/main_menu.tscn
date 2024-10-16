@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://br38c4rdu72jq"]
+[gd_scene load_steps=10 format=3 uid="uid://ckw2jlpkkaksx"]
 
 [ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_pc3nl"]
 [ext_resource type="Texture2D" uid="uid://vaanx3x672ai" path="res://Assets/Background/1.png" id="2_tmgvm"]
@@ -6,9 +6,9 @@
 [ext_resource type="Texture2D" uid="uid://ckqsu7uuktbm7" path="res://Assets/Background/3.png" id="4_5fdt5"]
 [ext_resource type="Texture2D" uid="uid://bi0767vs7h137" path="res://Assets/Background/4.png" id="5_nvnv5"]
 [ext_resource type="Texture2D" uid="uid://bkoxh8ua1i7x0" path="res://Assets/Background/5.png" id="6_fpjva"]
-[ext_resource type="Theme" uid="uid://qrsbb7x3dh0w" path="res://Assets/theme1.tres" id="7_7g1da"]
+[ext_resource type="Theme" uid="uid://byxolqbfki1a5" path="res://Assets/theme1.tres" id="7_7g1da"]
 [ext_resource type="Script" path="res://Scripts/Camera2D.gd" id="8_v4fy7"]
-[ext_resource type="PackedScene" uid="uid://ct5rxlnftbcko" path="res://Scenes/settings.tscn" id="9_ipo53"]
+[ext_resource type="PackedScene" uid="uid://djkg4e37prrxc" path="res://Scenes/settings.tscn" id="9_q3daw"]
 
 [node name="MainMenu" type="Control"]
 process_mode = 3
@@ -66,15 +66,29 @@ offset_right = 1152.0
 offset_bottom = 648.0
 texture = ExtResource("6_fpjva")
 
-[node name="Main" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Label" type="Label" parent="Main"]
+[node name="MainMenuSettings" parent="CanvasLayer" instance=ExtResource("9_q3daw")]
+visible = false
+
+[node name="HBoxContainer" parent="CanvasLayer/MainMenuSettings" index="1"]
+offset_top = -110.0
+offset_bottom = 70.0
+
+[node name="Main" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Label" type="Label" parent="CanvasLayer/Main"]
+layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -264.5
+offset_left = 291.5
 offset_top = 162.0
-offset_right = 264.5
+offset_right = 820.5
 offset_bottom = 233.0
 grow_horizontal = 2
 theme = ExtResource("7_7g1da")
@@ -87,36 +101,37 @@ theme_override_constants/shadow_outline_size = 10
 theme_override_font_sizes/font_size = 70
 text = "Desert Samurai"
 
-[node name="HBoxContainer" type="VBoxContainer" parent="Main"]
+[node name="HBoxContainer" type="VBoxContainer" parent="CanvasLayer/Main"]
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -124.0
-offset_top = -47.0
-offset_right = 124.0
-offset_bottom = 153.0
+offset_left = 432.0
+offset_top = 257.0
+offset_right = 680.0
+offset_bottom = 457.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 theme_override_constants/separation = 15
 
-[node name="Play" type="Button" parent="Main/HBoxContainer"]
+[node name="Play" type="Button" parent="CanvasLayer/Main/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 5
 size_flags_vertical = 3
 theme = ExtResource("7_7g1da")
 text = "Play"
 
-[node name="Settings" type="Button" parent="Main/HBoxContainer"]
+[node name="Settings" type="Button" parent="CanvasLayer/Main/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 5
 size_flags_vertical = 3
 theme = ExtResource("7_7g1da")
 text = "Settings"
 
-[node name="Quit" type="Button" parent="Main/HBoxContainer"]
+[node name="Quit" type="Button" parent="CanvasLayer/Main/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 5
 size_flags_vertical = 3
@@ -127,11 +142,10 @@ text = "Quit"
 position = Vector2(575, 324)
 script = ExtResource("8_v4fy7")
 
-[node name="Settings" type="CanvasLayer" parent="."]
-visible = false
+[connection signal="pressed" from="CanvasLayer/MainMenuSettings/HBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]
+[connection signal="pressed" from="CanvasLayer/MainMenuSettings/HBoxContainer/Quit" to="CanvasLayer/MainMenuSettings" method="_on_quit_pressed"]
+[connection signal="pressed" from="CanvasLayer/Main/HBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="CanvasLayer/Main/HBoxContainer/Settings" to="." method="_on_settings_pressed"]
+[connection signal="pressed" from="CanvasLayer/Main/HBoxContainer/Quit" to="." method="_on_quit_pressed"]
 
-[node name="Settings" parent="Settings" instance=ExtResource("9_ipo53")]
-
-[connection signal="pressed" from="Main/HBoxContainer/Play" to="." method="_on_play_pressed"]
-[connection signal="pressed" from="Main/HBoxContainer/Settings" to="." method="_on_settings_pressed"]
-[connection signal="pressed" from="Main/HBoxContainer/Quit" to="." method="_on_quit_pressed"]
+[editable path="CanvasLayer/MainMenuSettings"]

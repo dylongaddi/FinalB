@@ -14,3 +14,11 @@ func _process(delta):
 func _on_volume_value_changed(value):
 	AudioServer.set_bus_volume_db(0, value)
 	pass # Replace with function body.
+
+
+
+
+func _on_quit_pressed():
+	get_tree().quit()
+	
+	pass # Replace with function body.

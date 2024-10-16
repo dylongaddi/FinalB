@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://ct5rxlnftbcko"]
+[gd_scene load_steps=5 format=3 uid="uid://djkg4e37prrxc"]
 
 [ext_resource type="Script" path="res://Scripts/settings.gd" id="1_66y2g"]
 [ext_resource type="Texture2D" uid="uid://bipa4dasejviv" path="res://Assets/GUI.png" id="1_y3dev"]
-[ext_resource type="Theme" uid="uid://qrsbb7x3dh0w" path="res://Assets/theme1.tres" id="2_pital"]
+[ext_resource type="Theme" uid="uid://byxolqbfki1a5" path="res://Assets/theme1.tres" id="2_pital"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xga1x"]
 atlas = ExtResource("1_y3dev")
@@ -16,16 +16,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_66y2g")
-
-[node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0, 0, 0, 0.262745)
 
 [node name="ColorRect3" type="TextureRect" parent="."]
 modulate = Color(1, 0.74902, 0.560784, 1)
@@ -73,26 +63,12 @@ text = "Volume:"
 [node name="Volume" type="HSlider" parent="HBoxContainer"]
 layout_mode = 2
 
-[node name="Resume" type="Button" parent="HBoxContainer"]
+[node name="MainMenu" type="Button" parent="HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 5
 size_flags_vertical = 3
 theme = ExtResource("2_pital")
-text = "Resume"
-
-[node name="Settings" type="Button" parent="HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 5
-size_flags_vertical = 3
-theme = ExtResource("2_pital")
-text = "Settings"
-
-[node name="SaveAndQuit" type="Button" parent="HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 5
-size_flags_vertical = 3
-theme = ExtResource("2_pital")
-text = "Save and Quit"
+text = "Main Menu"
 
 [node name="Quit" type="Button" parent="HBoxContainer"]
 layout_mode = 2

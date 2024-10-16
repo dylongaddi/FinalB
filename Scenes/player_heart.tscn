@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cr7myyrrukswp"]
 
 [ext_resource type="Texture2D" uid="uid://vup7ks3hhdrq" path="res://Assets/Hearts/PNG/animated/border/heart_animated_2.png" id="1_8upyi"]
-[ext_resource type="Script" path="res://Scenes/player_heart.gd" id="1_yvhby"]
+[ext_resource type="Script" path="res://Scripts/player_heart.gd" id="1_yvhby"]
 
 [node name="PlayerHeart" type="Panel"]
 script = ExtResource("1_yvhby")

@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://Scripts/Gun.gd" id="1_nveyb"]
 
 [node name="Gun" type="Sprite2D"]
+texture_filter = 1
 texture = ExtResource("1_h70gk")
 script = ExtResource("1_nveyb")
 bullet_speed = 1000.0

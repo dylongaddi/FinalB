@@ -3,6 +3,7 @@ extends Node
 
 # Called when the node enters the scene tree for the first time.
 @export var pauseMenu: Control
+@export var mainMenu: PackedScene
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	if Input.is_action_just_pressed("pause") and get_tree().paused == false:
@@ -24,9 +25,16 @@ func _on_resume_pressed():
 
 
 func _on_quit_pressed():
+	get_tree().quit()
 	pass # Replace with function body.
 	
 
 
 func _on_player_died():
+	pass # Replace with function body.
+
+
+func _on_main_menu_pressed():
+	get_tree().paused = false
+	get_tree().change_scene_to_packed(mainMenu)
 	pass # Replace with function body.

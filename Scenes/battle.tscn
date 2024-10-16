@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bq52kqsyj3p7b"]
+[gd_scene load_steps=23 format=3 uid="uid://bq52kqsyj3p7b"]
 
 [ext_resource type="Script" path="res://Scripts/battle.gd" id="1_e0pcn"]
 [ext_resource type="PackedScene" uid="uid://t64kfv1h7p7k" path="res://Scenes/boss.tscn" id="1_gyhmg"]
@@ -15,6 +15,7 @@
 [ext_resource type="FontFile" uid="uid://rhlo0nte8ble" path="res://Assets/Minecraft.ttf" id="11_heypt"]
 [ext_resource type="Script" path="res://Scripts/GameManager.gd" id="12_vd63j"]
 [ext_resource type="PackedScene" uid="uid://qjm32fpxjj78" path="res://Scenes/pause_menu.tscn" id="13_122n2"]
+[ext_resource type="PackedScene" uid="uid://ckw2jlpkkaksx" path="res://Scenes/main_menu.tscn" id="16_523tu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wfa3c"]
 size = Vector2(0.618949, 122.157)
@@ -206,10 +207,12 @@ player = NodePath("../../..")
 process_mode = 3
 script = ExtResource("12_vd63j")
 pauseMenu = NodePath("../CanvasLayer/PauseMenu")
+mainMenu = ExtResource("16_523tu")
 
 [connection signal="healthChanged" from="Boss" to="CanvasLayer/BossHealthBar" method="_on_boss_health_changed"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/HBoxContainer/Resume" to="GameManager" method="_on_resume_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/HBoxContainer/Settings" to="GameManager" method="_on_settings_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/HBoxContainer/MainMenu" to="GameManager" method="_on_main_menu_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/HBoxContainer/Quit" to="GameManager" method="_on_quit_pressed"]
 [connection signal="died" from="Player" to="GameManager" method="_on_player_died"]
 [connection signal="healthChanged" from="Player" to="CanvasLayer/PlayerHealthBar" method="_on_player_health_changed"]

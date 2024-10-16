@@ -10,12 +10,12 @@
 [ext_resource type="Script" path="res://Scripts/HealthBar.gd" id="7_8f8sn"]
 [ext_resource type="PackedScene" uid="uid://b3ed36e8ufrqc" path="res://Scenes/player.tscn" id="7_nvbp2"]
 [ext_resource type="Texture2D" uid="uid://br4jrghle01oh" path="res://Assets/2D Health & Ammo Pickups v6.2/32px/ammo-pistol 32px.png" id="9_txb5g"]
-[ext_resource type="Theme" uid="uid://byxolqbfki1a5" path="res://Assets/theme1.tres" id="10_d40i0"]
+[ext_resource type="Theme" uid="uid://qrsbb7x3dh0w" path="res://Assets/theme1.tres" id="10_d40i0"]
 [ext_resource type="PackedScene" uid="uid://c47yoxp3okrng" path="res://Scenes/player_health_bar.tscn" id="10_l7hlw"]
 [ext_resource type="FontFile" uid="uid://rhlo0nte8ble" path="res://Assets/Minecraft.ttf" id="11_heypt"]
 [ext_resource type="Script" path="res://Scripts/GameManager.gd" id="12_vd63j"]
-[ext_resource type="PackedScene" uid="uid://qjm32fpxjj78" path="res://Scenes/pause_menu.tscn" id="13_122n2"]
-[ext_resource type="PackedScene" uid="uid://ckw2jlpkkaksx" path="res://Scenes/main_menu.tscn" id="16_523tu"]
+[ext_resource type="PackedScene" uid="uid://cbu2diuv7iuk" path="res://Scenes/pause_menu.tscn" id="13_122n2"]
+[ext_resource type="PackedScene" uid="uid://br38c4rdu72jq" path="res://Scenes/main_menu.tscn" id="16_523tu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wfa3c"]
 size = Vector2(0.618949, 122.157)
@@ -123,6 +123,16 @@ offset_right = 1152.0
 offset_bottom = 648.0
 grow_horizontal = 1
 grow_vertical = 1
+
+[node name="ColorRect3" type="ColorRect" parent="CanvasLayer/PauseMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.262745)
 
 [node name="BossHealthBar" type="ProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("object")]
 process_mode = 1

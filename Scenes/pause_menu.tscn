@@ -1,7 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://qjm32fpxjj78"]
+[gd_scene load_steps=4 format=3 uid="uid://cbu2diuv7iuk"]
 
 [ext_resource type="Texture2D" uid="uid://bipa4dasejviv" path="res://Assets/GUI.png" id="1_a43p1"]
-[ext_resource type="Theme" uid="uid://byxolqbfki1a5" path="res://Assets/theme1.tres" id="2_6ig60"]
+[ext_resource type="Theme" uid="uid://qrsbb7x3dh0w" path="res://Assets/theme1.tres" id="2_6ig60"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mwheq"]
 atlas = ExtResource("1_a43p1")
@@ -17,16 +17,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-
-[node name="ColorRect" type="ColorRect" parent="."]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-color = Color(0, 0, 0, 0.262745)
 
 [node name="ColorRect2" type="TextureRect" parent="."]
 modulate = Color(1, 0.74902, 0.560784, 1)

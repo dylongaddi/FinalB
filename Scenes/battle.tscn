@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bq52kqsyj3p7b"]
+[gd_scene load_steps=22 format=3 uid="uid://bq52kqsyj3p7b"]
 
 [ext_resource type="Script" path="res://Scenes/battle.gd" id="1_e0pcn"]
 [ext_resource type="PackedScene" uid="uid://t64kfv1h7p7k" path="res://Scenes/boss.tscn" id="1_gyhmg"]
@@ -30,6 +30,9 @@ bg_color = Color(0.619734, 0.159896, 0.229768, 1)
 [sub_resource type="FontVariation" id="FontVariation_x1cnk"]
 base_font = ExtResource("11_heypt")
 spacing_glyph = 5
+
+[sub_resource type="FontVariation" id="FontVariation_3dehh"]
+base_font = ExtResource("11_heypt")
 
 [node name="Battle" type="Node2D"]
 script = ExtResource("1_e0pcn")
@@ -142,7 +145,7 @@ show_percentage = false
 script = ExtResource("7_8f8sn")
 object = NodePath("../../Boss")
 
-[node name="RichTextLabel" type="Label" parent="CanvasLayer/BossHealthBar"]
+[node name="BossName" type="Label" parent="CanvasLayer/BossHealthBar"]
 layout_mode = 0
 offset_top = -27.0
 offset_right = 132.0
@@ -156,17 +159,20 @@ theme_override_font_sizes/font_size = 20
 text = " GRIMM"
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
-position = Vector2(155, 50)
+position = Vector2(160, 48)
 texture = ExtResource("9_txb5g")
 
-[node name="AmmoCount" type="RichTextLabel" parent="CanvasLayer/Sprite2D"]
-offset_left = 14.0
-offset_top = -11.0
-offset_right = 72.0
-offset_bottom = 34.0
-theme_override_colors/default_color = Color(0, 0, 0, 1)
+[node name="AmmoCount" type="Label" parent="CanvasLayer/Sprite2D"]
+offset_left = 13.0
+offset_top = -5.0
+offset_right = 68.0
+offset_bottom = 21.0
+theme = ExtResource("10_d40i0")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 3
+theme_override_fonts/font = SubResource("FontVariation_3dehh")
+theme_override_font_sizes/font_size = 16
 text = "30/30"
 
 [node name="PlayerHealthBar" parent="CanvasLayer" node_paths=PackedStringArray("player") instance=ExtResource("10_l7hlw")]

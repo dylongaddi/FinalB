@@ -13,7 +13,7 @@ const JUMP_VELOCITY = -500.0
 
 @export var maxHealth = 3.0
 @export var ammoCount = 30
-@export var ammoLabel: RichTextLabel
+@export var ammoLabel: Label
 @onready var currentHealth: float = maxHealth
 var damagable = true
 

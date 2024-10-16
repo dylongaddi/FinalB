@@ -51,6 +51,7 @@ corner_detail = 5
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_4tq1k"]
 texture = ExtResource("1_g7lq4")
 region_rect = Rect2(113, 81, 30, 14)
+modulate_color = Color(1, 0.21268, 0.159696, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ojek"]
 content_margin_left = 4.0

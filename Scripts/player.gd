@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name Player
 
 signal healthChanged
+signal died
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -500.0
@@ -10,10 +11,11 @@ const JUMP_VELOCITY = -500.0
 @onready var gunAnchor = $AnimatedSprite2D/Anchor
 @export var friction = 3.0 
 
-@export var maxHealth = 5
+@export var maxHealth = 3.0
 @export var ammoCount = 30
 @export var ammoLabel: RichTextLabel
-@onready var currentHealth: int = maxHealth
+@onready var currentHealth: float = maxHealth
+var damagable = true
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -69,6 +71,21 @@ func _physics_process(delta):
 				else:
 					return
 
-func take_damage(amount: int):
-	currentHealth = max(currentHealth - amount, 0)
-	healthChanged.emit()  # Emit signal when health changes
+func take_damage(amount: float):
+	if damagable:
+		currentHealth -= amount
+		healthChanged.emit()  # Emit signal when health changes
+		if currentHealth >= 0:
+			died.emit()
+		castIframes()
+			
+func castIframes():
+	damagable = false
+	sprite.set_modulate(Color(1, 0, 0, 0.6))
+	await get_tree().create_timer(0.7).timeout
+	sprite.set_modulate(Color(1, 1, 1, 1))
+	damagable = true
+	pass
+	
+
+

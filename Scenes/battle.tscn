@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bq52kqsyj3p7b"]
+[gd_scene load_steps=16 format=3 uid="uid://bq52kqsyj3p7b"]
 
 [ext_resource type="Script" path="res://Scenes/battle.gd" id="1_e0pcn"]
 [ext_resource type="PackedScene" uid="uid://t64kfv1h7p7k" path="res://Scenes/boss.tscn" id="1_gyhmg"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://Scenes/HealthBar.gd" id="7_8f8sn"]
 [ext_resource type="PackedScene" uid="uid://b3ed36e8ufrqc" path="res://Scenes/player.tscn" id="7_nvbp2"]
 [ext_resource type="Texture2D" uid="uid://br4jrghle01oh" path="res://Assets/2D Health & Ammo Pickups v6.2/32px/ammo-pistol 32px.png" id="9_txb5g"]
+[ext_resource type="PackedScene" uid="uid://c47yoxp3okrng" path="res://Scenes/player_health_bar.tscn" id="10_l7hlw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wfa3c"]
 size = Vector2(0.618949, 122.157)
@@ -134,44 +135,44 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 9
 text = " GRIMM"
 
-[node name="PlayerHealthBar" type="ProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("object")]
-z_index = 1
-offset_left = 40.0
-offset_top = 21.0
-offset_right = 140.0
-offset_bottom = 44.0
-theme_override_styles/background = SubResource("StyleBoxFlat_jehcj")
-theme_override_styles/fill = SubResource("StyleBoxFlat_k004x")
-max_value = 5.0
-value = 5.0
-show_percentage = false
-script = ExtResource("7_8f8sn")
-object = NodePath("../../Player")
-
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
-position = Vector2(168, 32)
+position = Vector2(155, 50)
 texture = ExtResource("9_txb5g")
 
-[node name="AmmoCount" type="RichTextLabel" parent="CanvasLayer"]
-offset_left = 182.0
-offset_top = 21.0
-offset_right = 240.0
-offset_bottom = 66.0
+[node name="AmmoCount" type="RichTextLabel" parent="CanvasLayer/Sprite2D"]
+offset_left = 14.0
+offset_top = -11.0
+offset_right = 72.0
+offset_bottom = 34.0
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
 theme_override_constants/outline_size = 3
 text = "30/30"
 
+[node name="PlayerHealthBar" parent="CanvasLayer" node_paths=PackedStringArray("player") instance=ExtResource("10_l7hlw")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 64.0
+offset_top = 50.0
+offset_right = 100.0
+offset_bottom = 50.0
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(1.5, 1.5)
+player = NodePath("../../Player")
+
 [node name="Player" parent="." node_paths=PackedStringArray("ammoLabel") instance=ExtResource("7_nvbp2")]
 position = Vector2(671, 625)
 scale = Vector2(1.8, 1.8)
 friction = 3.5
-ammoLabel = NodePath("../CanvasLayer/AmmoCount")
+ammoLabel = NodePath("../CanvasLayer/Sprite2D/AmmoCount")
 
 [node name="Gun" parent="Player/AnimatedSprite2D/Anchor" index="0" node_paths=PackedStringArray("player")]
 player = NodePath("../../..")
 
 [connection signal="healthChanged" from="Boss" to="CanvasLayer/BossHealthBar" method="_on_boss_health_changed"]
+[connection signal="healthChanged" from="Player" to="CanvasLayer/PlayerHealthBar" method="_on_player_health_changed"]
 
 [editable path="Boss"]
 [editable path="Player"]

@@ -32,7 +32,11 @@ func _physics_process(_delta):
 
 func take_damage(amount: int):
 	currentHealth -= amount
-	healthChanged.emit()  # Emit signal when health changes
+	healthChanged.emit() 
+	sprite.set_modulate(Color(1, 0, 0, 0.6))
+	await get_tree().create_timer(0.1).timeout
+	sprite.set_modulate(Color(1, 1, 1, 1))
+	 # Emit signal when health changes
 	
 	
 

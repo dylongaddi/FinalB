@@ -1,0 +1,97 @@
+[gd_scene load_steps=4 format=3 uid="uid://djkg4e37prrxc"]
+
+[ext_resource type="Texture2D" uid="uid://bipa4dasejviv" path="res://Assets/GUI.png" id="1_y3dev"]
+[ext_resource type="Theme" uid="uid://byxolqbfki1a5" path="res://Assets/theme1.tres" id="2_pital"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b0jo3"]
+atlas = ExtResource("1_y3dev")
+region = Rect2(80, 96, 32, 32)
+
+[node name="Settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.262745)
+
+[node name="ColorRect2" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -225.0
+offset_top = -220.0
+offset_right = 225.0
+offset_bottom = 220.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_b0jo3")
+
+[node name="HBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -124.0
+offset_top = -133.0
+offset_right = 124.0
+offset_bottom = 133.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+theme = ExtResource("2_pital")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 4
+text = "Volume:"
+
+[node name="Volume" type="HSlider" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="Resume" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 3
+theme = ExtResource("2_pital")
+text = "Resume"
+
+[node name="Settings" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 3
+theme = ExtResource("2_pital")
+text = "Settings"
+
+[node name="SaveAndQuit" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 3
+theme = ExtResource("2_pital")
+text = "Save and Quit"
+
+[node name="Quit" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 3
+theme = ExtResource("2_pital")
+text = "Quit"

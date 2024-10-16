@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bq52kqsyj3p7b"]
+[gd_scene load_steps=21 format=3 uid="uid://bq52kqsyj3p7b"]
 
 [ext_resource type="Script" path="res://Scenes/battle.gd" id="1_e0pcn"]
 [ext_resource type="PackedScene" uid="uid://t64kfv1h7p7k" path="res://Scenes/boss.tscn" id="1_gyhmg"]
@@ -10,7 +10,11 @@
 [ext_resource type="Script" path="res://Scenes/HealthBar.gd" id="7_8f8sn"]
 [ext_resource type="PackedScene" uid="uid://b3ed36e8ufrqc" path="res://Scenes/player.tscn" id="7_nvbp2"]
 [ext_resource type="Texture2D" uid="uid://br4jrghle01oh" path="res://Assets/2D Health & Ammo Pickups v6.2/32px/ammo-pistol 32px.png" id="9_txb5g"]
-[ext_resource type="PackedScene" uid="uid://c47yoxp3okrng" path="res://Scenes/player_health_bar.tscn" id="10_l7hlw"]
+[ext_resource type="Theme" uid="uid://byxolqbfki1a5" path="res://Assets/theme1.tres" id="10_d40i0"]
+[ext_resource type="PackedScene" path="res://Scenes/player_health_bar.tscn" id="10_l7hlw"]
+[ext_resource type="FontFile" uid="uid://rhlo0nte8ble" path="res://Assets/Minecraft.ttf" id="11_heypt"]
+[ext_resource type="Script" path="res://Scenes/GameManager.gd" id="12_vd63j"]
+[ext_resource type="PackedScene" uid="uid://qjm32fpxjj78" path="res://Scenes/pause_menu.tscn" id="13_122n2"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wfa3c"]
 size = Vector2(0.618949, 122.157)
@@ -22,6 +26,10 @@ bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k004x"]
 bg_color = Color(0.619734, 0.159896, 0.229768, 1)
+
+[sub_resource type="FontVariation" id="FontVariation_x1cnk"]
+base_font = ExtResource("11_heypt")
+spacing_glyph = 5
 
 [node name="Battle" type="Node2D"]
 script = ExtResource("1_e0pcn")
@@ -101,11 +109,19 @@ centered = false
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("13_122n2")]
+visible = false
+z_index = 3
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 1152.0
+offset_bottom = 648.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="BossHealthBar" type="ProgressBar" parent="CanvasLayer" node_paths=PackedStringArray("object")]
+process_mode = 1
 z_index = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -126,13 +142,17 @@ show_percentage = false
 script = ExtResource("7_8f8sn")
 object = NodePath("../../Boss")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/BossHealthBar"]
+[node name="RichTextLabel" type="Label" parent="CanvasLayer/BossHealthBar"]
 layout_mode = 0
 offset_top = -27.0
 offset_right = 132.0
 offset_bottom = 39.0
+theme = ExtResource("10_d40i0")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 9
+theme_override_constants/shadow_outline_size = 7
+theme_override_fonts/font = SubResource("FontVariation_x1cnk")
+theme_override_font_sizes/font_size = 20
 text = " GRIMM"
 
 [node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
@@ -162,18 +182,33 @@ grow_vertical = 1
 scale = Vector2(1.5, 1.5)
 player = NodePath("../../Player")
 
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
 [node name="Player" parent="." node_paths=PackedStringArray("ammoLabel") instance=ExtResource("7_nvbp2")]
 position = Vector2(671, 625)
 scale = Vector2(1.8, 1.8)
-friction = 3.5
 ammoLabel = NodePath("../CanvasLayer/Sprite2D/AmmoCount")
 
 [node name="Gun" parent="Player/AnimatedSprite2D/Anchor" index="0" node_paths=PackedStringArray("player")]
 player = NodePath("../../..")
 
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("pauseMenu")]
+process_mode = 3
+script = ExtResource("12_vd63j")
+pauseMenu = NodePath("../CanvasLayer/PauseMenu")
+
 [connection signal="healthChanged" from="Boss" to="CanvasLayer/BossHealthBar" method="_on_boss_health_changed"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/HBoxContainer/Resume" to="GameManager" method="_on_resume_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/HBoxContainer/Settings" to="GameManager" method="_on_settings_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/HBoxContainer/Quit" to="GameManager" method="_on_quit_pressed"]
+[connection signal="died" from="Player" to="GameManager" method="_on_player_died"]
 [connection signal="healthChanged" from="Player" to="CanvasLayer/PlayerHealthBar" method="_on_player_health_changed"]
 
 [editable path="Boss"]
+[editable path="CanvasLayer/PauseMenu"]
 [editable path="Player"]
 [editable path="Player/AnimatedSprite2D/Anchor/Gun"]

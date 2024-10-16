@@ -1,0 +1,128 @@
+[gd_scene load_steps=10 format=3 uid="uid://ckw2jlpkkaksx"]
+
+[ext_resource type="Texture2D" uid="uid://vaanx3x672ai" path="res://Assets/Background/1.png" id="1_4ysl3"]
+[ext_resource type="Texture2D" uid="uid://ddhi0odv84hl0" path="res://Assets/Background/2.png" id="2_oamqo"]
+[ext_resource type="Texture2D" uid="uid://ckqsu7uuktbm7" path="res://Assets/Background/3.png" id="3_hvibs"]
+[ext_resource type="Texture2D" uid="uid://bi0767vs7h137" path="res://Assets/Background/4.png" id="4_3wsu7"]
+[ext_resource type="Texture2D" uid="uid://bkoxh8ua1i7x0" path="res://Assets/Background/5.png" id="5_hodoi"]
+[ext_resource type="Texture2D" uid="uid://bipa4dasejviv" path="res://Assets/GUI.png" id="6_1j6r4"]
+[ext_resource type="Theme" uid="uid://byxolqbfki1a5" path="res://Assets/theme1.tres" id="7_auwmo"]
+[ext_resource type="Script" path="res://Assets/Camera2D.gd" id="8_wia0i"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gfjgi"]
+atlas = ExtResource("6_1j6r4")
+region = Rect2(80, 96, 32, 32)
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(324, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+scale = Vector2(5, 5)
+texture = ExtResource("1_4ysl3")
+centered = false
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(324, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+scale = Vector2(5, 5)
+texture = ExtResource("2_oamqo")
+centered = false
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(324, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
+scale = Vector2(5, 5)
+texture = ExtResource("3_hvibs")
+centered = false
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(324, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer4"]
+scale = Vector2(5, 5)
+texture = ExtResource("4_3wsu7")
+centered = false
+
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2(324, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer5"]
+scale = Vector2(5, 5)
+texture = ExtResource("5_hodoi")
+centered = false
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect2" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -225.0
+offset_top = -220.0
+offset_right = 225.0
+offset_bottom = 220.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = SubResource("AtlasTexture_gfjgi")
+
+[node name="HBoxContainer" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -124.0
+offset_top = -133.0
+offset_right = 124.0
+offset_bottom = 133.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 15
+
+[node name="Resume" type="Button" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 3
+theme = ExtResource("7_auwmo")
+text = "Resume"
+
+[node name="Settings" type="Button" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 3
+theme = ExtResource("7_auwmo")
+text = "Settings"
+
+[node name="SaveAndQuit" type="Button" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 3
+theme = ExtResource("7_auwmo")
+text = "Save and Quit"
+
+[node name="Quit" type="Button" parent="CanvasLayer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 3
+theme = ExtResource("7_auwmo")
+text = "Quit"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(585, 331)
+script = ExtResource("8_wia0i")

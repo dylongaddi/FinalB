@@ -77,10 +77,11 @@ func take_damage(amount: float):
 	if damagable:
 		currentHealth -= amount
 		healthChanged.emit()  # Emit signal when health changes
-		if currentHealth >= 0:
+		if currentHealth <= 0:
+			print(died)
 			died.emit()
 		castIframes()
-		print(currentHealth)
+
 			
 func castIframes():
 	damagable = false

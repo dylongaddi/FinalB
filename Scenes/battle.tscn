@@ -237,6 +237,7 @@ scale = Vector2(1.5, 1.5)
 player = NodePath("../../Player")
 
 [node name="GameOverScreen" parent="CanvasLayer" instance=ExtResource("16_boets")]
+process_mode = 2
 
 [node name="ColorRect4" type="ColorRect" parent="CanvasLayer/GameOverScreen"]
 layout_mode = 1

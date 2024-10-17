@@ -1,4 +1,5 @@
 extends Control
+class_name GameOverScreen
 
 @onready var text = $HBoxContainer/Label
 

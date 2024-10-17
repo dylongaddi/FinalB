@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://xe4brmt31tcg"]
 
-[ext_resource type="Script" path="res://GameOverScreen.gd" id="1_g2v17"]
+[ext_resource type="Script" path="res://Scripts/GameOverScreen.gd" id="1_tqpql"]
 [ext_resource type="Texture2D" uid="uid://bipa4dasejviv" path="res://Assets/GUI.png" id="2_md8fu"]
 [ext_resource type="Theme" uid="uid://byxolqbfki1a5" path="res://Assets/theme1.tres" id="3_55tnq"]
 
@@ -16,7 +16,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_g2v17")
+script = ExtResource("1_tqpql")
 
 [node name="ColorRect3" type="TextureRect" parent="."]
 modulate = Color(1, 0.74902, 0.560784, 1)

@@ -54,3 +54,4 @@ func _on_player_died():
 	get_tree().paused = true
 	gameOverScreen.show()
 	gameOverScreen.checkWin(false)
+

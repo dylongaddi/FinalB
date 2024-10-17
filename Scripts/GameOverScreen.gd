@@ -16,10 +16,14 @@ func checkWin(result):
 
 
 func _on_restart_pressed():
+	if get_tree().paused == true:
+		get_tree().paused = false
 	get_tree().change_scene_to_file("res://Scenes/battle.tscn")
 
 
 func _on_main_menu_pressed():
+	if get_tree().paused == true:
+		get_tree().paused = false
 	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")
 
 

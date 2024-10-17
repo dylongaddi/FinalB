@@ -1,11 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://fsfx2swv5b1m"]
+[gd_scene load_steps=7 format=3 uid="uid://fsfx2swv5b1m"]
 
 [ext_resource type="Script" path="res://Scripts/ammo_spawner.gd" id="1_34lhv"]
 [ext_resource type="Texture2D" uid="uid://br4jrghle01oh" path="res://Assets/2D Health & Ammo Pickups v6.2/32px/ammo-pistol 32px.png" id="1_vllh2"]
+[ext_resource type="Theme" uid="uid://byxolqbfki1a5" path="res://Assets/theme1.tres" id="3_a0a3t"]
+[ext_resource type="FontFile" uid="uid://rhlo0nte8ble" path="res://Assets/Minecraft.ttf" id="4_extbu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fo1yi"]
 
-[node name="AmmoSpawner" type="StaticBody2D"]
+[sub_resource type="FontVariation" id="FontVariation_bi1wq"]
+base_font = ExtResource("4_extbu")
+
+[node name="AmmoSpawner" type="Area2D"]
 script = ExtResource("1_34lhv")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -13,3 +18,23 @@ texture = ExtResource("1_vllh2")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_fo1yi")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 11.0
+one_shot = true
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = -8.0
+offset_top = -7.0
+offset_right = 12.0
+offset_bottom = 13.0
+theme = ExtResource("3_a0a3t")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 2
+theme_override_fonts/font = SubResource("FontVariation_bi1wq")
+text = "10"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

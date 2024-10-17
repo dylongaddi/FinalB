@@ -3,7 +3,7 @@ class_name Bullet
 
 # Called when the node enters the scene tree for the first time.
 @export var velocity:Vector2
-@export var duration = 100
+@export var duration = 200
 @onready var sprite = $Sprite2D
 
 var damage = 1

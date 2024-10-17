@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Player
 
 signal healthChanged
-signal died
+signal player_died
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -500.0
@@ -62,7 +62,6 @@ func _physics_process(delta):
 			elif sprite.scale.x == -1:
 				gunAnchor.scale = Vector2(-1, -1)
 				gunAnchor.rotation = -gun.gun_direction
-				pass
 			if ammoCount > 0:
 				gunShotSound.play()
 				ammoCount -= 1
@@ -79,7 +78,7 @@ func take_damage(amount: float):
 		currentHealth -= amount
 		healthChanged.emit()  # Emit signal when health changes
 		if currentHealth >= 0:
-			died.emit()
+			player_died.emit()
 		castIframes()
 			
 func castIframes():
@@ -88,7 +87,12 @@ func castIframes():
 	await get_tree().create_timer(1).timeout
 	sprite.set_modulate(Color(1, 1, 1, 1))
 	damagable = true
-	pass
-	
 
+func _on_ammo_spawner_2_ammo_replenished():
+	ammoLabel.text = "%d/30" % [ammoCount]
+
+
+
+func _on_ammo_spawner_ammo_replenished():
+	ammoLabel.text = "%d/30" % [ammoCount]
 

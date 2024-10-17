@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://daywr7sjqg8eg"]
 
-[ext_resource type="Script" path="res://BulletSpawner.gd" id="1_lwrgg"]
+[ext_resource type="Script" path="res://Scripts/BulletSpawner.gd" id="1_82o2k"]
 [ext_resource type="PackedScene" uid="uid://22lob5wl2xkb" path="res://Scenes/boss_bullet.tscn" id="2_7dbit"]
 
 [sub_resource type="Gradient" id="Gradient_xmg3g"]
@@ -12,7 +12,7 @@ gradient = SubResource("Gradient_xmg3g")
 diffuse_texture = SubResource("GradientTexture2D_x5n2l")
 
 [node name="BulletSpawner" type="Node2D"]
-script = ExtResource("1_lwrgg")
+script = ExtResource("1_82o2k")
 bullet = ExtResource("2_7dbit")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

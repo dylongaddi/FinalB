@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://fsfx2swv5b1m"]
+[gd_scene load_steps=8 format=3 uid="uid://fsfx2swv5b1m"]
 
 [ext_resource type="Script" path="res://Scripts/ammo_spawner.gd" id="1_34lhv"]
 [ext_resource type="Texture2D" uid="uid://br4jrghle01oh" path="res://Assets/2D Health & Ammo Pickups v6.2/32px/ammo-pistol 32px.png" id="1_vllh2"]
 [ext_resource type="Theme" uid="uid://byxolqbfki1a5" path="res://Assets/theme1.tres" id="3_a0a3t"]
 [ext_resource type="FontFile" uid="uid://rhlo0nte8ble" path="res://Assets/Minecraft.ttf" id="4_extbu"]
+[ext_resource type="AudioStream" uid="uid://bq27y1alw5kmw" path="res://Assets/Audio/543131__190315__gun-reloading.wav" id="5_2evfj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fo1yi"]
 
@@ -35,6 +36,10 @@ theme_override_constants/shadow_offset_y = 1
 theme_override_constants/shadow_outline_size = 2
 theme_override_fonts/font = SubResource("FontVariation_bi1wq")
 text = "10"
+
+[node name="Reload" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_2evfj")
+volume_db = -5.0
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

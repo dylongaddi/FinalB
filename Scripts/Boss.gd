@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Boss
 
 signal healthChanged
-signal boss_died
+signal died
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -400.0
@@ -38,7 +38,7 @@ func take_damage(amount: int):
 	await get_tree().create_timer(0.1).timeout
 	sprite.set_modulate(Color(1, 1, 1, 1))
 	if currentHealth <= 0:
-		boss_died.emit()
+		died.emit()
 	 # Emit signal when health changes
 	
 	

@@ -5,6 +5,7 @@ extends Node
 @export var pauseMenu: Control
 @export var mainMenu: PackedScene
 @export var settings: Control
+@export var gameOverScreen: Control
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
 	if Input.is_action_just_pressed("pause") and get_tree().paused == false:
@@ -37,13 +38,18 @@ func _on_quit_pressed():
 	
 
 
-func _on_player_died():
-	pass # Replace with function body.
-
-
 func _on_main_menu_pressed():
 	get_tree().paused = false
 	get_tree().change_scene_to_packed(mainMenu)
 
 
+func _on_boss_died():
+	gameOverScreen.check_win(true)
+	gameOverScreen.show()
+
+
+
+func _on_player_died():
+	gameOverScreen.check_win(false)
+	gameOverScreen.show()
 

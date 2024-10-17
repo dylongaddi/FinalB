@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Player
 
 signal healthChanged
-signal player_died
+signal died
 
 const SPEED = 300.0
 const JUMP_VELOCITY = -500.0
@@ -78,8 +78,9 @@ func take_damage(amount: float):
 		currentHealth -= amount
 		healthChanged.emit()  # Emit signal when health changes
 		if currentHealth >= 0:
-			player_died.emit()
+			died.emit()
 		castIframes()
+		print(currentHealth)
 			
 func castIframes():
 	damagable = false

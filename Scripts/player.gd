@@ -9,6 +9,7 @@ const JUMP_VELOCITY = -500.0
 @onready var sprite = $AnimatedSprite2D
 @onready var gun = $AnimatedSprite2D/Anchor/Gun
 @onready var gunAnchor = $AnimatedSprite2D/Anchor
+@onready var gunShotSound = $gunshotSFX
 @export var friction = 3.0 
 
 @export var maxHealth = 3.0
@@ -53,6 +54,7 @@ func _physics_process(delta):
 	if Input.is_action_pressed("shoot"):
 		if gun.firerateTimer.is_stopped():
 			gun.shoot()
+
 			gunAnchor.rotation = gun.gun_direction
 			if sprite.scale.x == 1:
 				gunAnchor.scale = Vector2(1, 1)
@@ -62,6 +64,7 @@ func _physics_process(delta):
 				gunAnchor.rotation = -gun.gun_direction
 				pass
 			if ammoCount > 0:
+				gunShotSound.play()
 				ammoCount -= 1
 				if ammoLabel:
 					if ammoCount < 10:
@@ -82,7 +85,7 @@ func take_damage(amount: float):
 func castIframes():
 	damagable = false
 	sprite.set_modulate(Color(1, 0, 0, 0.6))
-	await get_tree().create_timer(0.7).timeout
+	await get_tree().create_timer(1).timeout
 	sprite.set_modulate(Color(1, 1, 1, 1))
 	damagable = true
 	pass

@@ -7,7 +7,6 @@
 texture_filter = 1
 texture = ExtResource("1_h70gk")
 script = ExtResource("1_nveyb")
-bullet_speed = 1000.0
 
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(12, -11)

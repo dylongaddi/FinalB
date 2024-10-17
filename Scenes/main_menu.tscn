@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ckw2jlpkkaksx"]
+[gd_scene load_steps=11 format=3 uid="uid://ckw2jlpkkaksx"]
 
 [ext_resource type="Script" path="res://Scripts/main_menu.gd" id="1_pc3nl"]
 [ext_resource type="Texture2D" uid="uid://vaanx3x672ai" path="res://Assets/Background/1.png" id="2_tmgvm"]
@@ -9,6 +9,7 @@
 [ext_resource type="Theme" uid="uid://byxolqbfki1a5" path="res://Assets/theme1.tres" id="7_7g1da"]
 [ext_resource type="Script" path="res://Scripts/Camera2D.gd" id="8_v4fy7"]
 [ext_resource type="PackedScene" uid="uid://djkg4e37prrxc" path="res://Scenes/settings.tscn" id="9_q3daw"]
+[ext_resource type="AudioStream" uid="uid://ch7sde7dy6qn8" path="res://Assets/Audio/02 - DavidKBD - Purgatory Pack - Gateways.ogg" id="10_j1twh"]
 
 [node name="MainMenu" type="Control"]
 process_mode = 3
@@ -141,6 +142,11 @@ text = "Quit"
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(575, 324)
 script = ExtResource("8_v4fy7")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_j1twh")
+volume_db = -30.0
+autoplay = true
 
 [connection signal="pressed" from="CanvasLayer/MainMenuSettings/HBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]
 [connection signal="pressed" from="CanvasLayer/MainMenuSettings/HBoxContainer/Quit" to="CanvasLayer/MainMenuSettings" method="_on_quit_pressed"]

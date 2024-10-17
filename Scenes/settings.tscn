@@ -62,6 +62,8 @@ text = "Volume:"
 
 [node name="Volume" type="HSlider" parent="HBoxContainer"]
 layout_mode = 2
+min_value = -30.0
+max_value = 20.0
 
 [node name="MainMenu" type="Button" parent="HBoxContainer"]
 layout_mode = 2
@@ -77,4 +79,5 @@ size_flags_vertical = 3
 theme = ExtResource("2_pital")
 text = "Quit"
 
+[connection signal="drag_ended" from="HBoxContainer/Volume" to="." method="_on_volume_drag_ended"]
 [connection signal="value_changed" from="HBoxContainer/Volume" to="." method="_on_volume_value_changed"]

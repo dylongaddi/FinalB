@@ -75,7 +75,7 @@ region = Rect2(303, 0, 101, 100)
 [sub_resource type="SpriteFrames" id="SpriteFrames_cxciw"]
 animations = [{
 "frames": [{
-"duration": 1.0,
+"duration": 2.0,
 "texture": SubResource("AtlasTexture_tbj41")
 }, {
 "duration": 1.0,
@@ -170,7 +170,7 @@ maxHealth = 1000
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_cxciw")
 animation = &"attack"
-autoplay = "idle"
+autoplay = "attack"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-10.2482, 1.01315)

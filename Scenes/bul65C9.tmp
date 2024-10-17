@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://daywr7sjqg8eg"]
+
+[ext_resource type="Script" path="res://BulletSpawner.gd" id="1_lwrgg"]
+
+[sub_resource type="Gradient" id="Gradient_xmg3g"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_x5n2l"]
+gradient = SubResource("Gradient_xmg3g")
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_inh56"]
+diffuse_texture = SubResource("GradientTexture2D_x5n2l")
+
+[node name="BulletSpawner" type="Node2D"]
+position = Vector2(570, 326)
+script = ExtResource("1_lwrgg")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("CanvasTexture_inh56")
+
+[node name="FirerateTimer" type="Timer" parent="."]
+wait_time = 0.01
+one_shot = true
+autostart = true

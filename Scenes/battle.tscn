@@ -269,7 +269,7 @@ gameOverScreen = NodePath("../CanvasLayer/GameOverScreen")
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 process_mode = 3
 stream = ExtResource("18_rqd5y")
-volume_db = -27.0
+volume_db = -35.0
 autoplay = true
 
 [node name="AmmoSpawner" parent="." instance=ExtResource("20_4x8xg")]

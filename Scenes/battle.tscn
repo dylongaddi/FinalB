@@ -258,6 +258,9 @@ ammoLabel = NodePath("../CanvasLayer/Sprite2D/AmmoCount")
 [node name="Gun" parent="Player/AnimatedSprite2D/Anchor" index="0" node_paths=PackedStringArray("player")]
 player = NodePath("../../..")
 
+[node name="gunshotSFX" parent="Player" index="3"]
+volume_db = -16.0
+
 [node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("pauseMenu", "settings", "gameOverScreen")]
 process_mode = 3
 script = ExtResource("12_vd63j")

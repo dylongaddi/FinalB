@@ -63,7 +63,7 @@ text = "Volume:"
 [node name="Volume" type="HSlider" parent="HBoxContainer"]
 layout_mode = 2
 min_value = -30.0
-max_value = 35.0
+max_value = 18.0
 
 [node name="MainMenu" type="Button" parent="HBoxContainer"]
 layout_mode = 2

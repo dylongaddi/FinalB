@@ -1,0 +1,34 @@
+[gd_scene load_steps=4 format=3 uid="uid://dqqgbkayq16il"]
+
+[ext_resource type="Theme" uid="uid://byxolqbfki1a5" path="res://Assets/theme1.tres" id="1_6h75n"]
+[ext_resource type="FontFile" uid="uid://rhlo0nte8ble" path="res://Assets/Minecraft.ttf" id="2_jkbv0"]
+
+[sub_resource type="GDScript" id="GDScript_t2s1m"]
+script/source = "extends Label
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready():
+	await get_tree().create_timer(.1).timeout
+	queue_free()
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta):
+	pass
+"
+
+[node name="DamageNumber" type="Label"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_6h75n")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 0
+theme_override_fonts/font = ExtResource("2_jkbv0")
+theme_override_font_sizes/font_size = 16
+text = "10"
+script = SubResource("GDScript_t2s1m")

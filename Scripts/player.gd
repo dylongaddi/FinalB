@@ -94,7 +94,6 @@ func _on_ammo_spawner_2_ammo_replenished():
 	ammoLabel.text = "%d/30" % [ammoCount]
 
 
-
 func _on_ammo_spawner_ammo_replenished():
 	ammoLabel.text = "%d/30" % [ammoCount]
 

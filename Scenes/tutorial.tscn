@@ -1,0 +1,364 @@
+[gd_scene load_steps=21 format=3 uid="uid://daw4mhs0txu2h"]
+
+[ext_resource type="Texture2D" uid="uid://vaanx3x672ai" path="res://Assets/Background/1.png" id="1_gukym"]
+[ext_resource type="Texture2D" uid="uid://ddhi0odv84hl0" path="res://Assets/Background/2.png" id="2_ohhbk"]
+[ext_resource type="PackedScene" uid="uid://b3ed36e8ufrqc" path="res://Scenes/player.tscn" id="3_i3t1b"]
+[ext_resource type="Texture2D" uid="uid://ckqsu7uuktbm7" path="res://Assets/Background/3.png" id="3_rfo5n"]
+[ext_resource type="Texture2D" uid="uid://bi0767vs7h137" path="res://Assets/Background/4.png" id="4_2ptyx"]
+[ext_resource type="Texture2D" uid="uid://bkoxh8ua1i7x0" path="res://Assets/Background/5.png" id="5_gsp47"]
+[ext_resource type="PackedScene" uid="uid://qjm32fpxjj78" path="res://Scenes/pause_menu.tscn" id="6_ygmy6"]
+[ext_resource type="Texture2D" uid="uid://ury12dboggqk" path="res://Assets/Keyboard/Keyboard Letters and Symbols.png" id="7_gn705"]
+[ext_resource type="PackedScene" uid="uid://djkg4e37prrxc" path="res://Scenes/settings.tscn" id="7_we5tk"]
+[ext_resource type="Theme" uid="uid://byxolqbfki1a5" path="res://Assets/theme1.tres" id="8_4oej0"]
+[ext_resource type="FontFile" uid="uid://rhlo0nte8ble" path="res://Assets/Minecraft.ttf" id="10_rfhbe"]
+[ext_resource type="Texture2D" uid="uid://br4jrghle01oh" path="res://Assets/2D Health & Ammo Pickups v6.2/32px/ammo-pistol 32px.png" id="11_fa3kp"]
+[ext_resource type="PackedScene" uid="uid://c47yoxp3okrng" path="res://Scenes/player_health_bar.tscn" id="12_ahufc"]
+[ext_resource type="Script" path="res://Scripts/GameManager.gd" id="15_iv4mt"]
+[ext_resource type="PackedScene" uid="uid://ckw2jlpkkaksx" path="res://Scenes/main_menu.tscn" id="16_ahw4n"]
+[ext_resource type="Texture2D" uid="uid://be05t13ondl2v" path="res://Assets/Keyboard/Keyboard Extras.png" id="17_r6l0p"]
+[ext_resource type="PackedScene" uid="uid://fsfx2swv5b1m" path="res://Scenes/ammo_spawner.tscn" id="18_2vbfe"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_behs7"]
+size = Vector2(0.618949, 122.157)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_8tadc"]
+
+[sub_resource type="FontVariation" id="FontVariation_qdqno"]
+base_font = ExtResource("10_rfhbe")
+
+[node name="Tutorial" type="Node2D"]
+
+[node name="RightBoundary" type="StaticBody2D" parent="."]
+position = Vector2(2280, 976)
+scale = Vector2(4.1616, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightBoundary"]
+position = Vector2(31.3293, -577.5)
+scale = Vector2(12.035, 6.77)
+shape = SubResource("RectangleShape2D_behs7")
+
+[node name="LeftBoundary" type="StaticBody2D" parent="."]
+position = Vector2(-142.88, 992)
+scale = Vector2(4.1616, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftBoundary"]
+position = Vector2(31.3293, -577.5)
+scale = Vector2(12.035, 6.77)
+shape = SubResource("RectangleShape2D_behs7")
+
+[node name="FloorBoundary" type="StaticBody2D" parent="."]
+position = Vector2(-29, 426)
+scale = Vector2(2.04, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FloorBoundary"]
+position = Vector2(1, 307)
+scale = Vector2(12.035, 6.77)
+shape = SubResource("WorldBoundaryShape2D_8tadc")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+scale = Vector2(5, 5)
+motion_scale = Vector2(0.2, 0.2)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+texture = ExtResource("1_gukym")
+centered = false
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+scale = Vector2(5, 5)
+motion_scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+texture = ExtResource("2_ohhbk")
+centered = false
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+scale = Vector2(5, 5)
+motion_scale = Vector2(0.8, 0.8)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer3"]
+texture = ExtResource("3_rfo5n")
+centered = false
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
+scale = Vector2(5, 5)
+motion_scale = Vector2(0.9, 0.9)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer4"]
+texture = ExtResource("4_2ptyx")
+centered = false
+
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground"]
+scale = Vector2(5, 5)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer5"]
+texture = ExtResource("5_gsp47")
+centered = false
+
+[node name="Control2" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 576.0
+offset_top = 420.0
+offset_right = 576.0
+offset_bottom = 420.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="A" type="Sprite2D" parent="Control2"]
+position = Vector2(-61, -25)
+scale = Vector2(2, 2)
+texture = ExtResource("7_gn705")
+region_enabled = true
+region_rect = Rect2(1, 34, 13, 12)
+
+[node name="D" type="Sprite2D" parent="Control2"]
+position = Vector2(57, -25)
+scale = Vector2(2, 2)
+texture = ExtResource("7_gn705")
+region_enabled = true
+region_rect = Rect2(49, 34, 13, 12)
+
+[node name="Space" type="Sprite2D" parent="Control2"]
+scale = Vector2(2, 2)
+texture = ExtResource("17_r6l0p")
+region_enabled = true
+region_rect = Rect2(65, 34, 30, 12)
+
+[node name="Title" type="Label" parent="Control2"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -134.0
+offset_top = 64.0
+offset_right = 2.0
+offset_bottom = 80.0
+grow_horizontal = 2
+scale = Vector2(2, 2)
+theme = ExtResource("8_4oej0")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = SubResource("FontVariation_qdqno")
+theme_override_font_sizes/font_size = 16
+text = "Movement Controls
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control3" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 885.0
+offset_top = 420.0
+offset_right = 885.0
+offset_bottom = 420.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="G" type="Sprite2D" parent="Control3"]
+position = Vector2(-67, 0)
+scale = Vector2(2, 2)
+texture = ExtResource("7_gn705")
+region_enabled = true
+region_rect = Rect2(97, 34, 13, 12)
+
+[node name="Title" type="Label" parent="Control3"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -62.0
+offset_top = 64.0
+offset_right = 74.0
+offset_bottom = 80.0
+grow_horizontal = 2
+scale = Vector2(2, 2)
+theme = ExtResource("8_4oej0")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = SubResource("FontVariation_qdqno")
+theme_override_font_sizes/font_size = 16
+text = "Shoot
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Title2" type="Label" parent="Control3"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -35.0
+offset_top = -12.0
+offset_right = 118.0
+offset_bottom = 4.0
+grow_horizontal = 2
+scale = Vector2(2, 2)
+theme = ExtResource("8_4oej0")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = SubResource("FontVariation_qdqno")
+theme_override_font_sizes/font_size = 16
+text = "or LeftMouseButton
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("6_ygmy6")]
+visible = false
+z_index = 3
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_right = 1152.0
+offset_bottom = 648.0
+grow_horizontal = 1
+grow_vertical = 1
+
+[node name="ColorRect3" type="ColorRect" parent="CanvasLayer/PauseMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.262745)
+
+[node name="Settings" parent="CanvasLayer" instance=ExtResource("7_we5tk")]
+process_mode = 2
+visible = false
+
+[node name="ColorRect3" parent="CanvasLayer/Settings" index="0"]
+z_index = 3
+
+[node name="HBoxContainer" parent="CanvasLayer/Settings" index="1"]
+z_index = 3
+
+[node name="Resume" type="Button" parent="CanvasLayer/Settings/HBoxContainer" index="2"]
+layout_mode = 2
+size_flags_horizontal = 5
+size_flags_vertical = 3
+theme = ExtResource("8_4oej0")
+text = "Resume
+"
+
+[node name="ColorRect4" type="ColorRect" parent="CanvasLayer/Settings"]
+z_index = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.262745)
+
+[node name="Sprite2D" type="Sprite2D" parent="CanvasLayer"]
+position = Vector2(160, 48)
+texture = ExtResource("11_fa3kp")
+
+[node name="AmmoCount" type="Label" parent="CanvasLayer/Sprite2D"]
+offset_left = 13.0
+offset_top = -5.0
+offset_right = 68.0
+offset_bottom = 21.0
+theme = ExtResource("8_4oej0")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = SubResource("FontVariation_qdqno")
+theme_override_font_sizes/font_size = 16
+text = "30/30"
+
+[node name="PlayerHealthBar" parent="CanvasLayer" instance=ExtResource("12_ahufc")]
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 64.0
+offset_top = 50.0
+offset_right = 100.0
+offset_bottom = 50.0
+grow_horizontal = 1
+grow_vertical = 1
+scale = Vector2(1.5, 1.5)
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="CanvasLayer/Control"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -134.0
+offset_top = 64.0
+offset_right = 2.0
+offset_bottom = 80.0
+grow_horizontal = 2
+scale = Vector2(2, 2)
+theme = ExtResource("8_4oej0")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = SubResource("FontVariation_qdqno")
+theme_override_font_sizes/font_size = 16
+text = "TUTORIAL MODE
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Player" parent="." node_paths=PackedStringArray("ammoLabel") instance=ExtResource("3_i3t1b")]
+position = Vector2(671, 625)
+scale = Vector2(1.8, 1.8)
+friction = 10.0
+ammoLabel = NodePath("../CanvasLayer/Sprite2D/AmmoCount")
+
+[node name="Gun" parent="Player/AnimatedSprite2D/Anchor" index="0" node_paths=PackedStringArray("player")]
+player = NodePath("../../..")
+
+[node name="gunshotSFX" parent="Player" index="3"]
+volume_db = -16.0
+
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("pauseMenu", "settings")]
+process_mode = 3
+script = ExtResource("15_iv4mt")
+pauseMenu = NodePath("../CanvasLayer/PauseMenu")
+mainMenu = ExtResource("16_ahw4n")
+settings = NodePath("../CanvasLayer/Settings")
+
+[node name="AmmoSpawner" parent="." instance=ExtResource("18_2vbfe")]
+position = Vector2(175, 690)
+scale = Vector2(2, 2)
+
+[node name="AmmoSpawner2" parent="." instance=ExtResource("18_2vbfe")]
+position = Vector2(1167, 623)
+scale = Vector2(2, 2)
+
+[node name="AmmoSpawner3" parent="." instance=ExtResource("18_2vbfe")]
+position = Vector2(2326, 690)
+scale = Vector2(2, 2)
+
+[editable path="CanvasLayer/PauseMenu"]
+[editable path="CanvasLayer/Settings"]
+[editable path="Player"]

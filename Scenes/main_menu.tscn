@@ -145,7 +145,7 @@ script = ExtResource("8_v4fy7")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("10_j1twh")
-volume_db = -35.0
+volume_db = -40.0
 autoplay = true
 
 [connection signal="pressed" from="CanvasLayer/MainMenuSettings/HBoxContainer/MainMenu" to="." method="_on_main_menu_pressed"]

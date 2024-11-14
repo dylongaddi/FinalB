@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://daw4mhs0txu2h"]
+[gd_scene load_steps=30 format=3 uid="uid://daw4mhs0txu2h"]
 
 [ext_resource type="Texture2D" uid="uid://vaanx3x672ai" path="res://Assets/Background/1.png" id="1_gukym"]
 [ext_resource type="Texture2D" uid="uid://ddhi0odv84hl0" path="res://Assets/Background/2.png" id="2_ohhbk"]
@@ -18,6 +18,13 @@
 [ext_resource type="AudioStream" uid="uid://75jfhrbuhss4" path="res://Assets/Audio/06 - DavidKBD - Purgatory Pack - On Fire.ogg" id="17_jhyqr"]
 [ext_resource type="Texture2D" uid="uid://be05t13ondl2v" path="res://Assets/Keyboard/Keyboard Extras.png" id="17_r6l0p"]
 [ext_resource type="PackedScene" uid="uid://fsfx2swv5b1m" path="res://Scenes/ammo_spawner.tscn" id="18_2vbfe"]
+[ext_resource type="PackedScene" uid="uid://t64kfv1h7p7k" path="res://Scenes/boss.tscn" id="19_3usfi"]
+[ext_resource type="Texture2D" uid="uid://dxnkg3i1oa5pi" path="res://Assets/Sprites/Armored/Hited/Hited1.png" id="20_8rp82"]
+[ext_resource type="Texture2D" uid="uid://cu142ct7vca3x" path="res://Assets/Sprites/Armored/Hited/Hited2.png" id="21_8wti7"]
+[ext_resource type="Texture2D" uid="uid://qdhhni4dlx2v" path="res://Assets/Sprites/Armored/Hited/Hited3.png" id="22_vxovk"]
+[ext_resource type="Texture2D" uid="uid://i1vc36lj5m6g" path="res://Assets/Sprites/Armored/Hited/Hited4.png" id="23_chh1g"]
+[ext_resource type="Texture2D" uid="uid://yaamotnqglmk" path="res://Assets/Sprites/Armored/Hited/Hited5.png" id="24_8dg2k"]
+[ext_resource type="Texture2D" uid="uid://c5r74fv6o3bw3" path="res://Assets/Sprites/Armored/Idle/Idle.png" id="25_jb5xo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_behs7"]
 size = Vector2(0.618949, 122.157)
@@ -26,6 +33,37 @@ size = Vector2(0.618949, 122.157)
 
 [sub_resource type="FontVariation" id="FontVariation_qdqno"]
 base_font = ExtResource("10_rfhbe")
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pw776"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("20_8rp82")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_8wti7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_vxovk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_chh1g")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_8dg2k")
+}],
+"loop": true,
+"name": &"hit",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("25_jb5xo")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
 
 [node name="Tutorial" type="Node2D"]
 
@@ -351,6 +389,27 @@ pauseMenu = NodePath("../CanvasLayer/PauseMenu")
 mainMenu = ExtResource("16_ahw4n")
 settings = NodePath("../CanvasLayer/Settings")
 
+[node name="Title" type="Label" parent="."]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 521.0
+offset_top = 588.0
+offset_right = 756.0
+offset_bottom = 604.0
+grow_horizontal = 2
+scale = Vector2(2, 2)
+theme = ExtResource("8_4oej0")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_fonts/font = SubResource("FontVariation_qdqno")
+theme_override_font_sizes/font_size = 16
+text = "Ammo Packs Replenish Ammo
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="AmmoSpawner" parent="." instance=ExtResource("18_2vbfe")]
 position = Vector2(175, 690)
 scale = Vector2(2, 2)
@@ -369,6 +428,42 @@ stream = ExtResource("17_jhyqr")
 volume_db = -40.0
 autoplay = true
 
+[node name="Boss" parent="." instance=ExtResource("19_3usfi")]
+position = Vector2(1079, 670)
+scale = Vector2(1.6, 1.6)
+
+[node name="AnimatedSprite2D" parent="Boss" index="0"]
+sprite_frames = SubResource("SpriteFrames_pw776")
+animation = &"idle"
+autoplay = ""
+
+[node name="CollisionShape2D" parent="Boss" index="1"]
+position = Vector2(3.0033, 2.4989)
+
+[node name="Boss2" parent="." instance=ExtResource("19_3usfi")]
+position = Vector2(255, 554)
+scale = Vector2(1.6, 1.6)
+
+[node name="AnimatedSprite2D" parent="Boss2" index="0"]
+sprite_frames = SubResource("SpriteFrames_pw776")
+animation = &"idle"
+autoplay = ""
+
+[node name="CollisionShape2D" parent="Boss2" index="1"]
+position = Vector2(3.0033, 2.4989)
+
+[node name="Boss3" parent="." instance=ExtResource("19_3usfi")]
+position = Vector2(727, 396)
+scale = Vector2(1.6, 1.6)
+
+[node name="AnimatedSprite2D" parent="Boss3" index="0"]
+sprite_frames = SubResource("SpriteFrames_pw776")
+animation = &"idle"
+autoplay = ""
+
+[node name="CollisionShape2D" parent="Boss3" index="1"]
+position = Vector2(3.0033, 2.4989)
+
 [connection signal="pressed" from="CanvasLayer/PauseMenu/HBoxContainer/Resume" to="GameManager" method="_on_resume_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/HBoxContainer/Settings" to="GameManager" method="_on_settings_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/HBoxContainer/MainMenu" to="GameManager" method="_on_main_menu_pressed"]
@@ -380,3 +475,6 @@ autoplay = true
 [editable path="CanvasLayer/PauseMenu"]
 [editable path="CanvasLayer/Settings"]
 [editable path="Player"]
+[editable path="Boss"]
+[editable path="Boss2"]
+[editable path="Boss3"]

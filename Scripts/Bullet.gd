@@ -30,6 +30,7 @@ func _physics_process(delta):
 			d.label_settings.outline_size = 6
 			get_tree().current_scene.add_child(d)
 			d.pivot_offset = Vector2(d.size / 2)
+			print(d.global_position)
 		queue_free()
 			
 		

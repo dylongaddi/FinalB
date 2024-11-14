@@ -6,10 +6,12 @@
 [sub_resource type="GDScript" id="GDScript_t2s1m"]
 script/source = "extends Label
 
-
+var horMove = 10
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	scale = Vector2(1.5, 1.5)
+	if global_position.x > 1140:
+		horMove = -10
 	var tween = get_tree().create_tween()
 	tween.set_parallel(true)
 	tween.tween_property(
@@ -17,7 +19,7 @@ func _ready():
 	tween.tween_property(
 		self, \"position:y\", self.position.y, 0.4 ).set_ease(Tween.EASE_IN).set_delay(0.2)
 	tween.tween_property(
-		self, \"position:x\", self.position.x - 5, 0.2 ).set_ease(Tween.EASE_OUT)
+		self, \"position:x\", self.position.x + horMove , 0.2 ).set_ease(Tween.EASE_OUT)
 	tween.tween_property(
 		self, \"scale\", Vector2.ZERO, 0.1).set_ease(Tween.EASE_IN).set_delay(0.25)
 	await tween.finished

@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://daw4mhs0txu2h"]
+[gd_scene load_steps=22 format=3 uid="uid://daw4mhs0txu2h"]
 
 [ext_resource type="Texture2D" uid="uid://vaanx3x672ai" path="res://Assets/Background/1.png" id="1_gukym"]
 [ext_resource type="Texture2D" uid="uid://ddhi0odv84hl0" path="res://Assets/Background/2.png" id="2_ohhbk"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://c47yoxp3okrng" path="res://Scenes/player_health_bar.tscn" id="12_ahufc"]
 [ext_resource type="Script" path="res://Scripts/GameManager.gd" id="15_iv4mt"]
 [ext_resource type="PackedScene" uid="uid://ckw2jlpkkaksx" path="res://Scenes/main_menu.tscn" id="16_ahw4n"]
+[ext_resource type="AudioStream" uid="uid://75jfhrbuhss4" path="res://Assets/Audio/06 - DavidKBD - Purgatory Pack - On Fire.ogg" id="17_jhyqr"]
 [ext_resource type="Texture2D" uid="uid://be05t13ondl2v" path="res://Assets/Keyboard/Keyboard Extras.png" id="17_r6l0p"]
 [ext_resource type="PackedScene" uid="uid://fsfx2swv5b1m" path="res://Scenes/ammo_spawner.tscn" id="18_2vbfe"]
 
@@ -109,6 +110,7 @@ offset_right = 576.0
 offset_bottom = 420.0
 grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 2
 
 [node name="A" type="Sprite2D" parent="Control2"]
 position = Vector2(-61, -25)
@@ -165,6 +167,7 @@ offset_right = 885.0
 offset_bottom = 420.0
 grow_horizontal = 2
 grow_vertical = 0
+mouse_filter = 2
 
 [node name="G" type="Sprite2D" parent="Control3"]
 position = Vector2(-67, 0)
@@ -305,6 +308,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="Title" type="Label" parent="CanvasLayer/Control"]
 layout_mode = 1
@@ -358,6 +362,20 @@ scale = Vector2(2, 2)
 [node name="AmmoSpawner3" parent="." instance=ExtResource("18_2vbfe")]
 position = Vector2(2326, 690)
 scale = Vector2(2, 2)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+stream = ExtResource("17_jhyqr")
+volume_db = -40.0
+autoplay = true
+
+[connection signal="pressed" from="CanvasLayer/PauseMenu/HBoxContainer/Resume" to="GameManager" method="_on_resume_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/HBoxContainer/Settings" to="GameManager" method="_on_settings_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/HBoxContainer/MainMenu" to="GameManager" method="_on_main_menu_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/HBoxContainer/Quit" to="GameManager" method="_on_quit_pressed"]
+[connection signal="pressed" from="CanvasLayer/Settings/HBoxContainer/Resume" to="GameManager" method="_on_resume_pressed"]
+[connection signal="pressed" from="CanvasLayer/Settings/HBoxContainer/MainMenu" to="GameManager" method="_on_main_menu_pressed"]
+[connection signal="pressed" from="CanvasLayer/Settings/HBoxContainer/Quit" to="GameManager" method="_on_quit_pressed"]
 
 [editable path="CanvasLayer/PauseMenu"]
 [editable path="CanvasLayer/Settings"]

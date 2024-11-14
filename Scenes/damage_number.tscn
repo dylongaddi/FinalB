@@ -9,7 +9,18 @@ script/source = "extends Label
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	await get_tree().create_timer(.1).timeout
+	scale = Vector2(1.5, 1.5)
+	var tween = get_tree().create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(
+		self, \"position:y\", self.position.y - 50, 0.2 ).set_ease(Tween.EASE_OUT)
+	tween.tween_property(
+		self, \"position:y\", self.position.y, 0.4 ).set_ease(Tween.EASE_IN).set_delay(0.2)
+	tween.tween_property(
+		self, \"position:x\", self.position.x - 5, 0.2 ).set_ease(Tween.EASE_OUT)
+	tween.tween_property(
+		self, \"scale\", Vector2.ZERO, 0.1).set_ease(Tween.EASE_IN).set_delay(0.25)
+	await tween.finished
 	queue_free()
 
 

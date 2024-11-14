@@ -34,3 +34,8 @@ func _on_main_menu_pressed():
 		settings.hide()
 	main.show()
 
+
+
+func _on_tutorial_pressed():
+	get_tree().change_scene_to_file("res://Scenes/tutorial.tscn")
+

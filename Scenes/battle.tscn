@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://bq52kqsyj3p7b"]
+[gd_scene load_steps=32 format=3 uid="uid://bq52kqsyj3p7b"]
 
 [ext_resource type="Script" path="res://Scripts/battle.gd" id="1_e0pcn"]
 [ext_resource type="PackedScene" uid="uid://t64kfv1h7p7k" path="res://Scenes/boss.tscn" id="1_gyhmg"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://Scripts/HealthBar.gd" id="7_8f8sn"]
 [ext_resource type="PackedScene" uid="uid://b3ed36e8ufrqc" path="res://Scenes/player.tscn" id="7_nvbp2"]
 [ext_resource type="PackedScene" uid="uid://djkg4e37prrxc" path="res://Scenes/settings.tscn" id="9_6y30c"]
+[ext_resource type="PackedScene" uid="uid://d37kbayccj2hp" path="res://ult_selection_screen.tscn" id="9_l3fpv"]
 [ext_resource type="Texture2D" uid="uid://br4jrghle01oh" path="res://Assets/2D Health & Ammo Pickups v6.2/32px/ammo-pistol 32px.png" id="9_txb5g"]
 [ext_resource type="Theme" uid="uid://byxolqbfki1a5" path="res://Assets/theme1.tres" id="10_d40i0"]
 [ext_resource type="PackedScene" uid="uid://c47yoxp3okrng" path="res://Scenes/player_health_bar.tscn" id="10_l7hlw"]
@@ -127,6 +128,8 @@ texture = ExtResource("6_ovqqe")
 centered = false
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="UltSelectionScreen" parent="CanvasLayer" instance=ExtResource("9_l3fpv")]
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("13_122n2")]
 visible = false
@@ -262,10 +265,10 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -80.0
-offset_top = -39.0
-offset_right = -60.0
-offset_bottom = -19.0
+offset_left = -81.0
+offset_top = -63.0
+offset_right = -25.0
+offset_bottom = -43.0
 grow_horizontal = 0
 grow_vertical = 0
 theme = ExtResource("10_d40i0")
@@ -275,16 +278,16 @@ theme_override_constants/shadow_outline_size = 2
 theme_override_fonts/font = SubResource("FontVariation_ux88n")
 text = "10"
 
-[node name="UltCDTimer" type="Label" parent="CanvasLayer/UltCDTimer"]
+[node name="UltPlaceholder" type="Label" parent="CanvasLayer/UltCDTimer"]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -49.0
+offset_left = -219.0
 offset_top = -20.0
-offset_right = -29.0
+offset_right = -64.0
 grow_horizontal = 0
 grow_vertical = 0
 theme = ExtResource("10_d40i0")
@@ -294,10 +297,51 @@ theme_override_constants/shadow_outline_size = 2
 theme_override_fonts/font = SubResource("FontVariation_ux88n")
 text = "ULTIMATE ABILITY:"
 
-[node name="Player" parent="." node_paths=PackedStringArray("ultLabel", "ammoLabel") instance=ExtResource("7_nvbp2")]
+[node name="UltName" type="Label" parent="CanvasLayer/UltCDTimer"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -219.0
+offset_top = 2.0
+offset_right = -18.0
+offset_bottom = 22.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("10_d40i0")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 2
+theme_override_fonts/font = SubResource("FontVariation_ux88n")
+text = "HYPERDRIVE PROTCOL"
+
+[node name="UltName2" type="Label" parent="CanvasLayer/UltCDTimer"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -219.0
+offset_top = 22.0
+offset_right = -18.0
+offset_bottom = 42.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("10_d40i0")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 2
+theme_override_fonts/font = SubResource("FontVariation_ux88n")
+text = "Press X to USE"
+
+[node name="Player" parent="." node_paths=PackedStringArray("ultLabel", "ultNameLabel", "ammoLabel") instance=ExtResource("7_nvbp2")]
 position = Vector2(671, 625)
 scale = Vector2(1.8, 1.8)
 ultLabel = NodePath("../CanvasLayer/UltCDTimer")
+ultNameLabel = NodePath("../CanvasLayer/UltCDTimer/UltName")
 friction = 10.0
 ammoLabel = NodePath("../CanvasLayer/Sprite2D/AmmoCount")
 
@@ -357,6 +401,9 @@ script = ExtResource("22_tetyy")
 
 [connection signal="died" from="Boss" to="GameManager" method="_on_boss_died"]
 [connection signal="healthChanged" from="Boss" to="CanvasLayer/BossHealthBar" method="_on_boss_health_changed"]
+[connection signal="pressed" from="CanvasLayer/UltSelectionScreen/VBoxContainer/HBoxContainer/Unstoppable" to="Player" method="_on_unstoppable_pressed"]
+[connection signal="pressed" from="CanvasLayer/UltSelectionScreen/VBoxContainer/HBoxContainer/DeadEye" to="Player" method="_on_dead_eye_pressed"]
+[connection signal="pressed" from="CanvasLayer/UltSelectionScreen/VBoxContainer/HBoxContainer/Hyperdrive" to="Player" method="_on_hyperdrive_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/HBoxContainer/Resume" to="GameManager" method="_on_resume_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/HBoxContainer/Settings" to="GameManager" method="_on_settings_pressed"]
 [connection signal="pressed" from="CanvasLayer/PauseMenu/HBoxContainer/MainMenu" to="GameManager" method="_on_main_menu_pressed"]
@@ -371,6 +418,7 @@ script = ExtResource("22_tetyy")
 [connection signal="ammo_replenished" from="AmmoSpawner3" to="Player" method="_on_ammo_spawner_ammo_replenished"]
 
 [editable path="Boss"]
+[editable path="CanvasLayer/UltSelectionScreen"]
 [editable path="CanvasLayer/PauseMenu"]
 [editable path="CanvasLayer/Settings"]
 [editable path="Player"]

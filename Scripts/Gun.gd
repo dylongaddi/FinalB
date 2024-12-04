@@ -13,6 +13,7 @@ var gun_direction
 @export var critChance: float = 0.2 
 var critResult
 var isInfiniteAmmoOn = false
+@export var critDamage = 20
 # Called when the node enters the scene tree for the first time.
 
 func shoot():
@@ -21,7 +22,7 @@ func shoot():
 	
 	critResult = randf()
 	if critResult < critChance:
-		damage = 20
+		damage = critDamage
 	else:
 		damage = 10
 	bullet.damage = damage

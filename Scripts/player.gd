@@ -12,6 +12,7 @@ const JUMP_VELOCITY = -500.0
 @onready var gunShotSound = $gunshotSFX
 @onready var ultTimer = $UltCooldownTimer
 @export var ultLabel = Label
+@export var ultNameLabel = Label
 @export var friction = 3.0  
 
 @export var maxHealth = 3.0
@@ -24,6 +25,7 @@ var ult = ULT.DEADEYE
 var ultCooldown = 0
 var isUsingUlt = false
 var ultOnCooldown = false
+var deadEYECOUNT = 0
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -71,6 +73,7 @@ func _physics_process(delta):
 				gunAnchor.rotation = -gun.gun_direction
 			if ammoCount > 0:
 				gunShotSound.play()
+				
 				ammoCount -= 1
 				if ammoLabel:
 					if ammoCount < 10:
@@ -119,6 +122,7 @@ func useUlt(ult):
 			ultCooldown = 12
 		ULT.DEADEYE:
 			gun.critChance = 0.9
+			deadEYECOUNT = 30
 			ultCooldown = 15
 		ULT.HYPERDRIVE:
 			gun.firerateTimer.wait_time = 0.05
@@ -146,4 +150,22 @@ func _on_ammo_spawner_ammo_replenished():
 	
 func _on_ult_cooldown_timer_timeout():
 	ultOnCooldown = false
+	pass # Replace with function body.
+
+
+func _on_unstoppable_pressed():
+	ult = ULT.UNSTOPPABLE
+	ultNameLabel = "UNSTOPPABLE FORCE"
+	pass # Replace with function body.
+
+
+func _on_dead_eye_pressed():
+	ult = ULT.DEADEYE
+	ultNameLabel = "DEADEYE ARSENAL"
+	pass # Replace with function body.
+
+
+func _on_hyperdrive_pressed():
+	ult = ULT.HYPERDRIVE
+	ultNameLabel = "HYPERDRIVE PROTOCOL"
 	pass # Replace with function body.

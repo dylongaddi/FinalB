@@ -87,11 +87,12 @@ vertical_alignment = 1
 layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_q5pih")
-theme_override_font_sizes/font_size = 18
-text = "The remaining bullets in 
-your magazine change 
-to 80% crit chance.
+theme_override_font_sizes/font_size = 16
+text = "Your next 30 bullets have 
+80% Crit Chance and Crits 
+Triple DMG.
 Default Crit Chance: 20%
+Default Crit DMG: 2x
 
 Cooldown: 18 seconds"
 text_overrun_behavior = 1

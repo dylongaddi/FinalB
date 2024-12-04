@@ -10,8 +10,9 @@ var can_shoot: bool = true
 var gun_direction
 @export var ammoCount: int
 @export var damage: int
-@export var critChance: float = 0.1
+@export var critChance: float = 0.2 
 var critResult
+var isInfiniteAmmoOn = false
 # Called when the node enters the scene tree for the first time.
 
 func shoot():
@@ -19,7 +20,7 @@ func shoot():
 	var bullet = _bullet.instantiate()
 	
 	critResult = randf()
-	if critResult < 0.2:
+	if critResult < critChance:
 		damage = 20
 	else:
 		damage = 10
@@ -30,6 +31,6 @@ func shoot():
 	bullet.rotation = gun_direction
 	bullet.speed = bullet_speed
 	ammoCount = player.ammoCount
-	if ammoCount > 0:
+	if ammoCount > 0 or isInfiniteAmmoOn:
 		get_tree().current_scene.add_child(bullet)
 	firerateTimer.start()

@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://bq52kqsyj3p7b"]
+[gd_scene load_steps=31 format=3 uid="uid://bq52kqsyj3p7b"]
 
 [ext_resource type="Script" path="res://Scripts/battle.gd" id="1_e0pcn"]
 [ext_resource type="PackedScene" uid="uid://t64kfv1h7p7k" path="res://Scenes/boss.tscn" id="1_gyhmg"]
@@ -17,9 +17,9 @@
 [ext_resource type="Script" path="res://Scripts/GameManager.gd" id="12_vd63j"]
 [ext_resource type="PackedScene" uid="uid://qjm32fpxjj78" path="res://Scenes/pause_menu.tscn" id="13_122n2"]
 [ext_resource type="PackedScene" uid="uid://ckw2jlpkkaksx" path="res://Scenes/main_menu.tscn" id="16_523tu"]
-[ext_resource type="PackedScene" uid="uid://xe4brmt31tcg" path="res://Scenes/game_over_screen.tscn" id="16_boets"]
+[ext_resource type="PackedScene" path="res://Scenes/game_over_screen.tscn" id="16_boets"]
 [ext_resource type="AudioStream" uid="uid://75jfhrbuhss4" path="res://Assets/Audio/06 - DavidKBD - Purgatory Pack - On Fire.ogg" id="18_rqd5y"]
-[ext_resource type="PackedScene" uid="uid://daywr7sjqg8eg" path="res://Scenes/bullet_spawner.tscn" id="19_tqrlq"]
+[ext_resource type="PackedScene" path="res://Scenes/bullet_spawner.tscn" id="19_tqrlq"]
 [ext_resource type="PackedScene" uid="uid://fsfx2swv5b1m" path="res://Scenes/ammo_spawner.tscn" id="20_4x8xg"]
 [ext_resource type="Script" path="res://Scenes/Title.gd" id="22_tetyy"]
 
@@ -39,6 +39,9 @@ base_font = ExtResource("11_heypt")
 spacing_glyph = 5
 
 [sub_resource type="FontVariation" id="FontVariation_3dehh"]
+base_font = ExtResource("11_heypt")
+
+[sub_resource type="FontVariation" id="FontVariation_ux88n"]
 base_font = ExtResource("11_heypt")
 
 [sub_resource type="FontVariation" id="FontVariation_xvj3x"]
@@ -253,9 +256,48 @@ grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0.262745)
 
-[node name="Player" parent="." node_paths=PackedStringArray("ammoLabel") instance=ExtResource("7_nvbp2")]
+[node name="UltCDTimer" type="Label" parent="CanvasLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -80.0
+offset_top = -39.0
+offset_right = -60.0
+offset_bottom = -19.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("10_d40i0")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 2
+theme_override_fonts/font = SubResource("FontVariation_ux88n")
+text = "10"
+
+[node name="UltCDTimer" type="Label" parent="CanvasLayer/UltCDTimer"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -49.0
+offset_top = -20.0
+offset_right = -29.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("10_d40i0")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 2
+theme_override_fonts/font = SubResource("FontVariation_ux88n")
+text = "ULTIMATE ABILITY:"
+
+[node name="Player" parent="." node_paths=PackedStringArray("ultLabel", "ammoLabel") instance=ExtResource("7_nvbp2")]
 position = Vector2(671, 625)
 scale = Vector2(1.8, 1.8)
+ultLabel = NodePath("../CanvasLayer/UltCDTimer")
 friction = 10.0
 ammoLabel = NodePath("../CanvasLayer/Sprite2D/AmmoCount")
 
@@ -333,3 +375,4 @@ script = ExtResource("22_tetyy")
 [editable path="CanvasLayer/Settings"]
 [editable path="Player"]
 [editable path="Player/AnimatedSprite2D/Anchor/Gun"]
+[editable path="AmmoSpawner"]

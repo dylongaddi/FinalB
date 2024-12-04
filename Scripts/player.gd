@@ -10,13 +10,20 @@ const JUMP_VELOCITY = -500.0
 @onready var gun = $AnimatedSprite2D/Anchor/Gun
 @onready var gunAnchor = $AnimatedSprite2D/Anchor
 @onready var gunShotSound = $gunshotSFX
-@export var friction = 3.0 
+@onready var ultTimer = $UltCooldownTimer
+@export var ultLabel = Label
+@export var friction = 3.0  
 
 @export var maxHealth = 3.0
 @export var ammoCount = 30
 @export var ammoLabel: Label
 @onready var currentHealth: float = maxHealth
 var damagable = true
+enum ULT {UNSTOPPABLE, DEADEYE, HYPERDRIVE}
+var ult = ULT.DEADEYE
+var ultCooldown = 0
+var isUsingUlt = false
+var ultOnCooldown = false
 
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -72,6 +79,20 @@ func _physics_process(delta):
 						ammoLabel.text = "%d/30" % [ammoCount]
 				else:
 					return
+	
+	if Input.is_action_just_pressed("ult"):
+		if ultTimer.is_stopped():
+			useUlt(ult)
+			
+			pass
+					
+		
+func _process(delta):
+	if ultCooldown:
+		ultLabel.text = "%d" % ult_cooldown()
+	else:
+		ultLabel.text = "READY"
+	pass
 
 func take_damage(amount: float):
 	if damagable:
@@ -80,15 +101,40 @@ func take_damage(amount: float):
 		if currentHealth <= 0:
 			print(died)
 			died.emit()
-		castIframes()
+		castIframes(1)
 
 			
-func castIframes():
+func castIframes(time):
 	damagable = false
 	sprite.set_modulate(Color(1, 0, 0, 0.6))
-	await get_tree().create_timer(1).timeout
+	await get_tree().create_timer(time).timeout
 	sprite.set_modulate(Color(1, 1, 1, 1))
 	damagable = true
+	
+
+func useUlt(ult):
+	match ult:
+		ULT.UNSTOPPABLE:
+			castIframes(2)
+			ultCooldown = 12
+		ULT.DEADEYE:
+			gun.critChance = 0.9
+			ultCooldown = 15
+		ULT.HYPERDRIVE:
+			gun.firerateTimer.wait_time = 0.05
+			ultCooldown = 25
+	ultTimer.wait_time = ultCooldown
+	ultTimer.start()
+			
+func setDefaultGunValues():
+	gun.critChance = 0.2
+	gun.isInfiniteAmmoOn = false
+	
+func ult_cooldown():
+	var time_left = ultTimer.time_left
+	var second = int(time_left) % 60
+	return second
+
 
 func _on_ammo_spawner_2_ammo_replenished():
 	ammoLabel.text = "%d/30" % [ammoCount]
@@ -96,4 +142,8 @@ func _on_ammo_spawner_2_ammo_replenished():
 
 func _on_ammo_spawner_ammo_replenished():
 	ammoLabel.text = "%d/30" % [ammoCount]
-
+	
+	
+func _on_ult_cooldown_timer_timeout():
+	ultOnCooldown = false
+	pass # Replace with function body.

@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://b3ed36e8ufrqc"]
+[gd_scene load_steps=30 format=3 uid="uid://b3ed36e8ufrqc"]
 
 [ext_resource type="Script" path="res://Scripts/player.gd" id="1_8275q"]
 [ext_resource type="Texture2D" uid="uid://j3124nrk0bk3" path="res://Assets/Player/Sprites/ATTACK 1.png" id="2_73ajs"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://bsh64kh637s80" path="res://Assets/Player/Sprites/RUN.png" id="3_3xu7h"]
 [ext_resource type="AudioStream" uid="uid://b87126n3rqkdw" path="res://Assets/Audio/643923__deadrobotmusic__cool-lil-laser-1.wav" id="6_mqyst"]
 [ext_resource type="PackedScene" uid="uid://brd7ebwf4v4hk" path="res://Scenes/Gun.tscn" id="6_pxau2"]
+[ext_resource type="Theme" uid="uid://byxolqbfki1a5" path="res://Assets/theme1.tres" id="7_n3q86"]
+[ext_resource type="FontFile" uid="uid://rhlo0nte8ble" path="res://Assets/Minecraft.ttf" id="8_w07tm"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hxpk5"]
 atlas = ExtResource("2_73ajs")
@@ -154,6 +156,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y43ug"]
 size = Vector2(7, 20)
 
+[sub_resource type="FontVariation" id="FontVariation_anvoj"]
+base_font = ExtResource("8_w07tm")
+
 [node name="Player" type="CharacterBody2D" groups=["players"]]
 script = ExtResource("1_8275q")
 
@@ -186,3 +191,21 @@ limit_bottom = 820
 [node name="gunshotSFX" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_mqyst")
 volume_db = -10.146
+
+[node name="UltCooldownTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="Label" type="Label" parent="."]
+visible = false
+offset_left = -8.0
+offset_top = -7.0
+offset_right = 12.0
+offset_bottom = 13.0
+theme = ExtResource("7_n3q86")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 2
+theme_override_fonts/font = SubResource("FontVariation_anvoj")
+text = "10"
+
+[connection signal="timeout" from="UltCooldownTimer" to="." method="_on_ult_cooldown_timer_timeout"]

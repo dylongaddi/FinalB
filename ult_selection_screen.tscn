@@ -1,0 +1,162 @@
+[gd_scene load_steps=5 format=3 uid="uid://d37kbayccj2hp"]
+
+[ext_resource type="Theme" uid="uid://byxolqbfki1a5" path="res://Assets/theme1.tres" id="1_q5pih"]
+[ext_resource type="FontFile" uid="uid://rhlo0nte8ble" path="res://Assets/Minecraft.ttf" id="2_ll0od"]
+[ext_resource type="Script" path="res://Scenes/Title.gd" id="3_fp3lu"]
+
+[sub_resource type="FontVariation" id="FontVariation_v4l8j"]
+base_font = ExtResource("2_ll0od")
+
+[node name="UltSelectionScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -400.0
+offset_top = -162.0
+offset_right = 400.0
+offset_bottom = 162.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 17
+
+[node name="Objective" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme = ExtResource("1_q5pih")
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_constants/outline_size = 3
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = SubResource("FontVariation_v4l8j")
+theme_override_font_sizes/font_size = 32
+text = "CHOOSE YOUR ULTIMATE ABILITY- Press X to Use"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("3_fp3lu")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_override_constants/separation = 49
+
+[node name="Unstoppable" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_q5pih")
+theme_override_font_sizes/font_size = 18
+text = "Become Invulnerable 
+for 2 seconds.
+
+Cooldown: 15 seconds"
+text_overrun_behavior = 1
+
+[node name="Title" type="Label" parent="VBoxContainer/HBoxContainer/Unstoppable"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -92.5
+offset_top = 43.0
+offset_right = 92.5
+offset_bottom = 75.0
+grow_horizontal = 2
+theme = ExtResource("1_q5pih")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = SubResource("FontVariation_v4l8j")
+theme_override_font_sizes/font_size = 20
+text = "Unstoppable Force"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="DeadEye" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_q5pih")
+theme_override_font_sizes/font_size = 18
+text = "The remaining bullets in 
+your magazine change 
+to 80% crit chance.
+Default Crit Chance: 20%
+
+Cooldown: 18 seconds"
+text_overrun_behavior = 1
+
+[node name="Title" type="Label" parent="VBoxContainer/HBoxContainer/DeadEye"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -92.5
+offset_top = 43.0
+offset_right = 92.5
+offset_bottom = 75.0
+grow_horizontal = 2
+theme = ExtResource("1_q5pih")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = SubResource("FontVariation_v4l8j")
+theme_override_font_sizes/font_size = 20
+text = "Deadeye Arsenal"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Hyperdrive" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("1_q5pih")
+theme_override_font_sizes/font_size = 18
+text = "Gain infinite ammo and 
+double your firerate 
+for 8 seconds.
+
+Cooldown: 25 seconds"
+text_overrun_behavior = 1
+
+[node name="Title" type="Label" parent="VBoxContainer/HBoxContainer/Hyperdrive"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -92.5
+offset_top = 43.0
+offset_right = 92.5
+offset_bottom = 75.0
+grow_horizontal = 2
+theme = ExtResource("1_q5pih")
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_constants/shadow_outline_size = 0
+theme_override_fonts/font = SubResource("FontVariation_v4l8j")
+theme_override_font_sizes/font_size = 20
+text = "Hyperdrive Protocol"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ColorRect4" type="ColorRect" parent="."]
+z_index = -2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.262745)

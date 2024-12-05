@@ -10,7 +10,8 @@ const JUMP_VELOCITY = -500.0
 @onready var gun = $AnimatedSprite2D/Anchor/Gun
 @onready var gunAnchor = $AnimatedSprite2D/Anchor
 @onready var gunShotSound = $gunshotSFX
-@onready var ultTimer = $UltCooldownTimer
+@onready var ultCDTimer = $UltCooldownTimer
+@onready var ultDurationTimer = $UltDurationTimer
 @export var ultLabel = Label
 @export var ultNameLabel = Label
 @export var friction = 3.0  
@@ -18,11 +19,12 @@ const JUMP_VELOCITY = -500.0
 @export var maxHealth = 3.0
 @export var ammoCount = 30
 @export var ammoLabel: Label
+@export var GameManager: GameManager
 @onready var currentHealth: float = maxHealth
 var damagable = true
 enum ULT {UNSTOPPABLE, DEADEYE, HYPERDRIVE}
 var ult = ULT.DEADEYE
-var ultCooldown = 0
+var ultCooldown = null
 var isUsingUlt = false
 var ultOnCooldown = false
 var deadEYECOUNT = 0
@@ -30,8 +32,6 @@ var deadEYECOUNT = 0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-
-
 
 func _physics_process(delta):
 	# Add the gravity.
@@ -84,9 +84,8 @@ func _physics_process(delta):
 					return
 	
 	if Input.is_action_just_pressed("ult"):
-		if ultTimer.is_stopped():
+		if ultCDTimer.is_stopped():
 			useUlt(ult)
-			
 			pass
 					
 		
@@ -118,24 +117,30 @@ func castIframes(time):
 func useUlt(ult):
 	match ult:
 		ULT.UNSTOPPABLE:
-			castIframes(2)
-			ultCooldown = 12
+			castIframes(3)
+			ultCooldown = 10
 		ULT.DEADEYE:
-			gun.critChance = 0.9
-			deadEYECOUNT = 30
-			ultCooldown = 15
+			gun.critChance = 0.3
+			gun.critDamage = 30
+			ultCooldown = 18
+			ultDurationTimer.wait_time = 5
 		ULT.HYPERDRIVE:
 			gun.firerateTimer.wait_time = 0.05
-			ultCooldown = 25
-	ultTimer.wait_time = ultCooldown
-	ultTimer.start()
+			gun.isInfiniteAmmoOn = true
+			ultCooldown = 35
+			ultDurationTimer.wait_time = 6
+	ultDurationTimer.start()
+	ultCDTimer.wait_time = ultCooldown
+	ultCDTimer.start()
 			
 func setDefaultGunValues():
 	gun.critChance = 0.2
+	gun.critDamage = 20
 	gun.isInfiniteAmmoOn = false
+	gun.firerateTimer.wait_time = 0.1
 	
 func ult_cooldown():
-	var time_left = ultTimer.time_left
+	var time_left = ultCDTimer.time_left
 	var second = int(time_left) % 60
 	return second
 
@@ -149,23 +154,35 @@ func _on_ammo_spawner_ammo_replenished():
 	
 	
 func _on_ult_cooldown_timer_timeout():
-	ultOnCooldown = false
+	ultCooldown = null
+	ultLabel.text = "READY"
 	pass # Replace with function body.
 
 
 func _on_unstoppable_pressed():
 	ult = ULT.UNSTOPPABLE
-	ultNameLabel = "UNSTOPPABLE FORCE"
+	ultNameLabel.text = "UNSTOPPABLE FORCE"
+	GameManager.isAugmentSelected = true
+	get_tree().paused = false
 	pass # Replace with function body.
 
 
 func _on_dead_eye_pressed():
+	print("deadeye")
 	ult = ULT.DEADEYE
-	ultNameLabel = "DEADEYE ARSENAL"
+	ultNameLabel.text = "DEADEYE ARSENAL"
+	GameManager.isAugmentSelected = true
+	get_tree().paused = false
 	pass # Replace with function body.
-
 
 func _on_hyperdrive_pressed():
 	ult = ULT.HYPERDRIVE
-	ultNameLabel = "HYPERDRIVE PROTOCOL"
+	ultNameLabel.text = "HYPERDRIVE PROTOCOL"
+	GameManager.isAugmentSelected = true
+	get_tree().paused = false
+	pass # Replace with function body.
+
+
+func _on_ult_duration_timer_timeout():
+	setDefaultGunValues()
 	pass # Replace with function body.

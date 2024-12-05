@@ -130,6 +130,7 @@ centered = false
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="UltSelectionScreen" parent="CanvasLayer" instance=ExtResource("9_l3fpv")]
+process_mode = 2
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("13_122n2")]
 visible = false
@@ -306,7 +307,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -219.0
 offset_top = 2.0
-offset_right = -18.0
+offset_right = 18.0
 offset_bottom = 22.0
 grow_horizontal = 0
 grow_vertical = 0
@@ -315,7 +316,6 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_y = 1
 theme_override_constants/shadow_outline_size = 2
 theme_override_fonts/font = SubResource("FontVariation_ux88n")
-text = "HYPERDRIVE PROTCOL"
 
 [node name="UltName2" type="Label" parent="CanvasLayer/UltCDTimer"]
 layout_mode = 1
@@ -335,15 +335,16 @@ theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 theme_override_constants/shadow_offset_y = 1
 theme_override_constants/shadow_outline_size = 2
 theme_override_fonts/font = SubResource("FontVariation_ux88n")
-text = "Press X to USE"
+text = "Press R to USE"
 
-[node name="Player" parent="." node_paths=PackedStringArray("ultLabel", "ultNameLabel", "ammoLabel") instance=ExtResource("7_nvbp2")]
+[node name="Player" parent="." node_paths=PackedStringArray("ultLabel", "ultNameLabel", "ammoLabel", "GameManager") instance=ExtResource("7_nvbp2")]
 position = Vector2(671, 625)
 scale = Vector2(1.8, 1.8)
 ultLabel = NodePath("../CanvasLayer/UltCDTimer")
 ultNameLabel = NodePath("../CanvasLayer/UltCDTimer/UltName")
 friction = 10.0
 ammoLabel = NodePath("../CanvasLayer/Sprite2D/AmmoCount")
+GameManager = NodePath("../GameManager")
 
 [node name="Gun" parent="Player/AnimatedSprite2D/Anchor" index="0" node_paths=PackedStringArray("player")]
 player = NodePath("../../..")
@@ -351,13 +352,14 @@ player = NodePath("../../..")
 [node name="gunshotSFX" parent="Player" index="3"]
 volume_db = -16.0
 
-[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("pauseMenu", "settings", "gameOverScreen")]
+[node name="GameManager" type="Node" parent="." node_paths=PackedStringArray("pauseMenu", "settings", "gameOverScreen", "ultSelectionScreen")]
 process_mode = 3
 script = ExtResource("12_vd63j")
 pauseMenu = NodePath("../CanvasLayer/PauseMenu")
 mainMenu = ExtResource("16_523tu")
 settings = NodePath("../CanvasLayer/Settings")
 gameOverScreen = NodePath("../CanvasLayer/GameOverScreen")
+ultSelectionScreen = NodePath("../CanvasLayer/UltSelectionScreen")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 process_mode = 3

@@ -1,3 +1,4 @@
+class_name GameManager
 extends Node
 
 
@@ -6,8 +7,16 @@ extends Node
 @export var mainMenu: PackedScene
 @export var settings: Control
 @export var gameOverScreen: GameOverScreen
+@export var ultSelectionScreen: Control
+var isAugmentSelected = false
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
+	if not isAugmentSelected: 
+		return
+		
+	if isAugmentSelected and ultSelectionScreen.visible:
+		ultSelectionScreen.hide()
+	
 	if Input.is_action_just_pressed("pause") and get_tree().paused == false:
 		pauseMenu.show()
 		get_tree().paused = true

@@ -40,7 +40,7 @@ theme_override_constants/outline_size = 3
 theme_override_constants/shadow_outline_size = 0
 theme_override_fonts/font = SubResource("FontVariation_v4l8j")
 theme_override_font_sizes/font_size = 32
-text = "CHOOSE YOUR ULTIMATE ABILITY- Press X to Use"
+text = "CHOOSE YOUR ULTIMATE ABILITY- Press R to Use"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("3_fp3lu")
@@ -57,9 +57,9 @@ size_flags_horizontal = 3
 theme = ExtResource("1_q5pih")
 theme_override_font_sizes/font_size = 18
 text = "Become Invulnerable 
-for 2 seconds.
+for 3 seconds.
 
-Cooldown: 15 seconds"
+Cooldown: 10 seconds"
 text_overrun_behavior = 1
 
 [node name="Title" type="Label" parent="VBoxContainer/HBoxContainer/Unstoppable"]
@@ -88,9 +88,9 @@ layout_mode = 2
 size_flags_horizontal = 3
 theme = ExtResource("1_q5pih")
 theme_override_font_sizes/font_size = 16
-text = "Your next 30 bullets have 
-80% Crit Chance and Crits 
-Triple DMG.
+text = "Your bullets have 
+30% Crit Chance and Crits 
+Triple DMG for 5 seconds.
 Default Crit Chance: 20%
 Default Crit DMG: 2x
 
@@ -125,9 +125,9 @@ theme = ExtResource("1_q5pih")
 theme_override_font_sizes/font_size = 18
 text = "Gain infinite ammo and 
 double your firerate 
-for 8 seconds.
+for 6 seconds.
 
-Cooldown: 25 seconds"
+Cooldown: 35 seconds"
 text_overrun_behavior = 1
 
 [node name="Title" type="Label" parent="VBoxContainer/HBoxContainer/Hyperdrive"]

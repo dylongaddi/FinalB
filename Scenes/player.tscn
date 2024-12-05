@@ -208,4 +208,8 @@ theme_override_constants/shadow_outline_size = 2
 theme_override_fonts/font = SubResource("FontVariation_anvoj")
 text = "10"
 
+[node name="UltDurationTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="timeout" from="UltCooldownTimer" to="." method="_on_ult_cooldown_timer_timeout"]
+[connection signal="timeout" from="UltDurationTimer" to="." method="_on_ult_duration_timer_timeout"]

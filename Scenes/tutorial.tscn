@@ -1,5 +1,6 @@
-[gd_scene load_steps=30 format=3 uid="uid://daw4mhs0txu2h"]
+[gd_scene load_steps=32 format=3 uid="uid://cmy82cdrliq38"]
 
+[ext_resource type="Script" path="res://Scenes/tutorial.gd" id="1_02cu7"]
 [ext_resource type="Texture2D" uid="uid://vaanx3x672ai" path="res://Assets/Background/1.png" id="1_gukym"]
 [ext_resource type="Texture2D" uid="uid://ddhi0odv84hl0" path="res://Assets/Background/2.png" id="2_ohhbk"]
 [ext_resource type="PackedScene" uid="uid://b3ed36e8ufrqc" path="res://Scenes/player.tscn" id="3_i3t1b"]
@@ -34,6 +35,9 @@ size = Vector2(0.618949, 122.157)
 [sub_resource type="FontVariation" id="FontVariation_qdqno"]
 base_font = ExtResource("10_rfhbe")
 
+[sub_resource type="FontVariation" id="FontVariation_6ween"]
+base_font = ExtResource("10_rfhbe")
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_pw776"]
 animations = [{
 "frames": [{
@@ -65,7 +69,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Tutorial" type="Node2D"]
+[node name="Tutorial" type="Node2D" node_paths=PackedStringArray("gameManager")]
+script = ExtResource("1_02cu7")
+gameManager = NodePath("GameManager")
 
 [node name="RightBoundary" type="StaticBody2D" parent="."]
 position = Vector2(2280, 976)
@@ -370,9 +376,88 @@ text = "TUTORIAL MODE
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Player" parent="." node_paths=PackedStringArray("ammoLabel") instance=ExtResource("3_i3t1b")]
+[node name="UltCDTimer" type="Label" parent="CanvasLayer"]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -81.0
+offset_top = -63.0
+offset_right = -25.0
+offset_bottom = -43.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("8_4oej0")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 2
+theme_override_fonts/font = SubResource("FontVariation_6ween")
+text = "10"
+
+[node name="UltPlaceholder" type="Label" parent="CanvasLayer/UltCDTimer"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -219.0
+offset_top = -20.0
+offset_right = -64.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("8_4oej0")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 2
+theme_override_fonts/font = SubResource("FontVariation_6ween")
+text = "ULTIMATE ABILITY:"
+
+[node name="UltName" type="Label" parent="CanvasLayer/UltCDTimer"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -219.0
+offset_top = 2.0
+offset_right = 18.0
+offset_bottom = 22.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("8_4oej0")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 2
+theme_override_fonts/font = SubResource("FontVariation_6ween")
+
+[node name="UltName2" type="Label" parent="CanvasLayer/UltCDTimer"]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -219.0
+offset_top = 22.0
+offset_right = -18.0
+offset_bottom = 42.0
+grow_horizontal = 0
+grow_vertical = 0
+theme = ExtResource("8_4oej0")
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_y = 1
+theme_override_constants/shadow_outline_size = 2
+theme_override_fonts/font = SubResource("FontVariation_6ween")
+text = "Press R to USE"
+
+[node name="Player" parent="." node_paths=PackedStringArray("ultLabel", "ultNameLabel", "ammoLabel") instance=ExtResource("3_i3t1b")]
 position = Vector2(671, 625)
 scale = Vector2(1.8, 1.8)
+ultLabel = NodePath("../CanvasLayer/UltCDTimer")
+ultNameLabel = NodePath("../CanvasLayer/UltCDTimer/UltName")
 friction = 10.0
 ammoLabel = NodePath("../CanvasLayer/Sprite2D/AmmoCount")
 
@@ -471,6 +556,9 @@ position = Vector2(3.0033, 2.4989)
 [connection signal="pressed" from="CanvasLayer/Settings/HBoxContainer/Resume" to="GameManager" method="_on_resume_pressed"]
 [connection signal="pressed" from="CanvasLayer/Settings/HBoxContainer/MainMenu" to="GameManager" method="_on_main_menu_pressed"]
 [connection signal="pressed" from="CanvasLayer/Settings/HBoxContainer/Quit" to="GameManager" method="_on_quit_pressed"]
+[connection signal="ammo_replenished" from="AmmoSpawner" to="Player" method="_on_ammo_spawner_ammo_replenished"]
+[connection signal="ammo_replenished" from="AmmoSpawner2" to="Player" method="_on_ammo_spawner_2_ammo_replenished"]
+[connection signal="ammo_replenished" from="AmmoSpawner3" to="Player" method="_on_ammo_spawner_3_ammo_replenished"]
 
 [editable path="CanvasLayer/PauseMenu"]
 [editable path="CanvasLayer/Settings"]

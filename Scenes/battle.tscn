@@ -418,6 +418,7 @@ script = ExtResource("22_tetyy")
 [connection signal="ammo_replenished" from="AmmoSpawner" to="Player" method="_on_ammo_spawner_ammo_replenished"]
 [connection signal="ammo_replenished" from="AmmoSpawner2" to="Player" method="_on_ammo_spawner_2_ammo_replenished"]
 [connection signal="ammo_replenished" from="AmmoSpawner3" to="Player" method="_on_ammo_spawner_ammo_replenished"]
+[connection signal="ammo_replenished" from="AmmoSpawner3" to="Player" method="_on_ammo_spawner_3_ammo_replenished"]
 
 [editable path="Boss"]
 [editable path="CanvasLayer/UltSelectionScreen"]

@@ -14,8 +14,9 @@ func _process(_delta):
 	if not isAugmentSelected: 
 		return
 		
-	if isAugmentSelected and ultSelectionScreen.visible:
-		ultSelectionScreen.hide()
+	if isAugmentSelected and ultSelectionScreen:
+		if ultSelectionScreen.visible:
+			ultSelectionScreen.hide()
 	
 	if Input.is_action_just_pressed("pause") and get_tree().paused == false:
 		pauseMenu.show()

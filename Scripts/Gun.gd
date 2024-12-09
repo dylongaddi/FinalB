@@ -32,6 +32,6 @@ func shoot():
 	bullet.rotation = gun_direction
 	bullet.speed = bullet_speed
 	ammoCount = player.ammoCount
-	if ammoCount > 0 or isInfiniteAmmoOn:
+	if ammoCount > 0 or (ammoCount == 0 and isInfiniteAmmoOn):
 		get_tree().current_scene.add_child(bullet)
 	firerateTimer.start()

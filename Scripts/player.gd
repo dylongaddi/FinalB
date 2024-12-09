@@ -71,10 +71,10 @@ func _physics_process(delta):
 			elif sprite.scale.x == -1:
 				gunAnchor.scale = Vector2(-1, -1)
 				gunAnchor.rotation = -gun.gun_direction
-			if ammoCount > 0:
+			if ammoCount > 0 or (ammoCount == 0 and gun.isInfiniteAmmoOn):
 				gunShotSound.play()
-				
-				ammoCount -= 1
+				if not gun.isInfiniteAmmoOn:
+					ammoCount -= 1
 				if ammoLabel:
 					if ammoCount < 10:
 						ammoLabel.text = "0%d/30" % [ammoCount]
@@ -152,6 +152,9 @@ func _on_ammo_spawner_2_ammo_replenished():
 func _on_ammo_spawner_ammo_replenished():
 	ammoLabel.text = "%d/30" % [ammoCount]
 	
+func _on_ammo_spawner_3_ammo_replenished():
+	ammoLabel.text = "%d/30" % [ammoCount]
+	
 	
 func _on_ult_cooldown_timer_timeout():
 	ultCooldown = null
@@ -166,7 +169,6 @@ func _on_unstoppable_pressed():
 	get_tree().paused = false
 	pass # Replace with function body.
 
-
 func _on_dead_eye_pressed():
 	print("deadeye")
 	ult = ULT.DEADEYE
@@ -180,9 +182,10 @@ func _on_hyperdrive_pressed():
 	ultNameLabel.text = "HYPERDRIVE PROTOCOL"
 	GameManager.isAugmentSelected = true
 	get_tree().paused = false
-	pass # Replace with function body.
+
 
 
 func _on_ult_duration_timer_timeout():
 	setDefaultGunValues()
-	pass # Replace with function body.
+
+

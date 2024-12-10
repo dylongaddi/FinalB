@@ -1,8 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://d37kbayccj2hp"]
+[gd_scene load_steps=4 format=3 uid="uid://d37kbayccj2hp"]
 
 [ext_resource type="Theme" uid="uid://byxolqbfki1a5" path="res://Assets/theme1.tres" id="1_q5pih"]
 [ext_resource type="FontFile" uid="uid://rhlo0nte8ble" path="res://Assets/Minecraft.ttf" id="2_ll0od"]
-[ext_resource type="Script" path="res://Scenes/Title.gd" id="3_fp3lu"]
 
 [sub_resource type="FontVariation" id="FontVariation_v4l8j"]
 base_font = ExtResource("2_ll0od")
@@ -43,7 +42,6 @@ theme_override_font_sizes/font_size = 32
 text = "CHOOSE YOUR ULTIMATE ABILITY- Press R to Use"
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("3_fp3lu")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
